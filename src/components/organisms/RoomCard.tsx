@@ -14,7 +14,7 @@ export const RoomCard: React.FC = () => {
         />
         <Info>
           <Title>
-            준호 습관 고쳐줄 사람 구함~!! 빨리 빨리!
+            나랑 같이 매일 일일커밋 하기 할 사람! 코딩코딩~!!
           </Title>
           <Row>
             <Field>

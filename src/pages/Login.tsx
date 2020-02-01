@@ -190,6 +190,7 @@ const Form = styled(Section)`
     &:nth-last-child(2) {
       border: 3px solid rgb(224, 229, 236) !important;
       transition: border-color 0.3s ease-in-out;
+      padding: 13.5px 0 !important;
 
       &:hover {
         border: 3px solid rgba(255, 255, 255, 0.4) !important;

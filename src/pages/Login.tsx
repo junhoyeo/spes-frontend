@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -14,7 +14,13 @@ import { Text } from '../components/atoms/Text';
 import logo from '../assets/logo.svg';
 
 const Login: React.FC<RouteComponentProps> = ({ history }) => {
+  const [modeForJoin, setModeForJoin] = useState<boolean>(false);
+
+  const onClickJoin = () => setModeForJoin(false);
   const onClickLogin = () => history.push('/');
+
+  const onClickMoveToJoin = () => setModeForJoin(true);
+  const onClickMoveToLogin = () => setModeForJoin(false);
 
   return (
     <LoginPage>
@@ -36,22 +42,49 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
           </Section>
           <Form>
             <FormTitle>
-              쉽고 간단하게 로그인.
+              { modeForJoin ? '빠르게 회원가입 진행.' : '쉽고 간단하게 로그인.' }
             </FormTitle>
             <NeuInput
-              placeholder="아이디"
+              placeholder="이메일"
             />
+            {
+              modeForJoin &&
+                <NeuInput
+                  placeholder="사용자 이름"
+                />
+            }
             <NeuInput
               placeholder="비밀번호"
             />
-            <NeuButton
-              text="로그인"
-              onClick={onClickLogin}
-            />
-            <NeuButton
-              text="회원가입"
-              onClick={onClickLogin}
-            />
+            {(() => {
+              if (modeForJoin) {
+                return (
+                  <>
+                    <NeuButton
+                      text="회원가입"
+                      onClick={onClickJoin}
+                    />
+                    <NeuButton
+                      text="또는 로그인"
+                      onClick={onClickMoveToLogin}
+                    />
+                  </>
+                );
+              }
+
+              return (
+                <>
+                  <NeuButton
+                    text="로그인"
+                    onClick={onClickLogin}
+                  />
+                  <NeuButton
+                    text="또는 회원가입"
+                    onClick={onClickMoveToJoin}
+                  />
+                </>
+              );
+            })()}
           </Form>
         </CardContent>
       </NeuCard>
@@ -149,8 +182,8 @@ const Form = styled(Section)`
       padding: 1.5rem 0.8rem !important;
     }
 
-    &:nth-child(4),
-    &:nth-child(5) {
+    &:nth-last-child(1),
+    &:nth-last-child(2) {
       border: 3px solid rgb(224, 229, 236) !important;
       transition: border-color 0.3s ease-in-out;
 

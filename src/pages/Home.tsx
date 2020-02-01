@@ -29,18 +29,6 @@ export const Home: React.FC = () => {
           </Title>
           <Cards>
             <RoomCard />
-          </Cards>
-        </Section>
-        <Section>
-          <Title
-            id="helping"
-            onClick={() => onClickHash('helping')}
-          >
-            <i className="fas fa-paperclip" />
-            내가 도와주는 목표방
-          </Title>
-          <Cards>
-            <RoomCard />
             <RoomCard />
             <RoomCard />
             <RoomCard />
@@ -130,7 +118,6 @@ const Title = styled(Text)`
   font-weight: 900;
   font-size: 2rem;
   margin-bottom: 1rem;
-  cursor: pointer;
 
   i.fa-paperclip {
     color: rgba(27, 41, 68, 0.5);

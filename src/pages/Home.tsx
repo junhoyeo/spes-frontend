@@ -2,7 +2,8 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import Page from '../components/atoms/Page';
-import { Text } from '../components/atoms/Text';
+import Text from '../components/atoms/Text';
+import Footer from '../components/organisms/Footer';
 import RoomCard from '../components/organisms/RoomCard';
 
 export const Home: React.FC = () => {
@@ -37,6 +38,7 @@ export const Home: React.FC = () => {
           </Cards>
         </Section>
       </Content>
+      <Footer />
     </LoginPage>
   );
 };

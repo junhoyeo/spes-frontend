@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -16,7 +17,10 @@ import logo from '../assets/logo.svg';
 const Login: React.FC<RouteComponentProps> = ({ history }) => {
   const [modeForJoin, setModeForJoin] = useState<boolean>(false);
 
-  const onClickJoin = () => setModeForJoin(false);
+  const onClickJoin = () => {
+    toast("회원가입 성공! 이제, 로그인 해주세요.");
+    setModeForJoin(false)
+  };
   const onClickLogin = () => history.push('/');
 
   const onClickMoveToJoin = () => setModeForJoin(true);

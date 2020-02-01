@@ -1,8 +1,11 @@
 import React from 'react';
+import { toast, ToastContainer } from 'react-toastify';
 import { BrowserRouter } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 
 import Router from './client/Router';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const GlobalStyle = createGlobalStyle`
   *,
@@ -32,6 +35,7 @@ const App = () => {
       <BrowserRouter basename="/">
         <Router />
       </BrowserRouter>
+      <ToastContainer position={toast.POSITION.TOP_RIGHT} />
     </>
   );
 }

@@ -1,123 +1,120 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import {
-  NeuButton,
-  NeuCard,
-  NeuInput,
-} from 'neumorphic-ui';
-
-import { Page } from '../components/atoms/Page';
+import Page from '../components/atoms/Page';
 import { Text } from '../components/atoms/Text';
+import RoomCard from '../components/organisms/RoomCard';
 
-export const Login: React.FC = () => {
+export const Home: React.FC = () => {
   return (
     <LoginPage>
-      <NeuCard
-        height="100%"
-      >
-        <CardContent>
-          <Section>
-            <BrandWrap>
-              <LogoImage
-                src="https://via.placeholder.com/150"
-              />
-              <Title>
-                새해 소망을 이룰 수 있는 희망, Spes™
-              </Title>
-            </BrandWrap>
-          </Section>
-          <Form>
-            <FormTitle>
-              쉽고 간단하게 로그인.
-            </FormTitle>
-            <NeuInput placeholder="아이디" />
-            <NeuInput placeholder="비밀번호" />
-            <NeuButton text="로그인" />
-            <NeuButton text="회원가입" />
-          </Form>
-        </CardContent>
-      </NeuCard>
+      <Top>
+        <Icon className="point">
+          1500p
+        </Icon>
+        <Icon className="crown">
+          <i className="fas fa-crown" />
+        </Icon>
+      </Top>
+      <Content>
+        <Section>
+          <Title>
+            내 목표방
+          </Title>
+          <Cards>
+            <RoomCard />
+          </Cards>
+        </Section>
+        <Section>
+          <Title>
+            내가 도와주는 목표방
+          </Title>
+          <Cards>
+            <RoomCard />
+          </Cards>
+        </Section>
+      </Content>
     </LoginPage>
   );
 };
 
-export default Login;
+export default Home;
 
 const LoginPage = styled(Page)`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
+`;
+
+const Top = styled.div`
+  width: 83%;
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const Icon = styled.button`
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 5.5rem;
+  width: 5.5rem;
+  background: linear-gradient(145deg, rgb(224, 229, 236), rgb(232, 238, 247));
+  box-shadow: 30px 30px 40px rgba(163, 177, 198, 0.4),
+    -30px -30px 40px rgba(163, 177, 198, 0.3);
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  width: 110px;
+  height: 110px;
+  font-size: 30px;
+  border-radius: 30px;
+  color: white;
+  vertical-align: top;
 
-  div {
-    width: fit-content !important;
-    height: fit-content !important;
+  &.crown {
+    background: linear-gradient(145deg, #FBD961, #F8D12A);
+    box-shadow: 30px 30px 40px rgba(248, 209, 42, 0.4),
+      -30px -30px 40px rgba(248, 209, 42, 0.3);
+    border: 3px solid rgba(256, 256, 0, 0.4);
+
+    i.fa-crown {
+      font-size: 2rem;
+      color: white;
+    }
+  }
+
+  &.point {
+    color: black;
+    font-weight: 800;
+    font-size: 1.5rem;
+  }
+
+  &:not(:last-child) {
+    margin-right: 1rem;
   }
 `;
 
-const CardContent = styled.div`
+const Content = styled.main`
+  width: 83%;
   display: flex;
+  flex-direction: column;
 `;
 
 const Section = styled.section`
-  margin: 0.5rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* justify-content: space-between; */
-  justify-content: center;
-`;
+  margin-bottom: 3rem;
 
-const BrandWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const LogoImage = styled.img`
-  width: 10rem;
-  height: 10rem;
-  border-radius: 5rem;
-  border: 5px solid rgb(232, 238, 247);
-  box-shadow:
-    rgba(163, 177, 198, 0.7) 3px 3px 3px inset,
-    rgba(255, 255, 255, 0.5) -3px -3px 4px inset,
-    rgba(163, 177, 198, 0.6) 9px 9px 16px;
-  margin-bottom: 2rem;
+  &:last-child {
+    margin-bottom: 5rem;
+  }
 `;
 
 const Title = styled(Text)`
-  color: #021B79;
-  margin-bottom: 0;
+  color: #1B2944;
+  font-weight: 900;
+  font-size: 2rem;
 `;
 
-const FormTitle = styled(Title)`
-  width: 100%;
-  text-align: start;
-  font-size: 0.95rem;
-  margin-bottom: 0.5rem;
-  color: rgba(2, 27, 121, 0.5);
-`;
-
-const Form = styled(Section)`
-  display: flex;
-  flex-direction: column;
-  width: 30rem;
-
-  div {
-    width: inherit !important;
-    font-size: 0.85rem;
-    margin-bottom: 0.5rem;
-
-    input {
-      width: inherit !important;
-      font-size: 0.8rem;
-      padding: 1.5rem 0.8rem !important;
-    }
-
-    /* login button */
-    /* &:nth-child(3) {
-    } */
-  }
+const Cards = styled.div`
 `;

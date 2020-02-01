@@ -5,8 +5,11 @@ import { createGlobalStyle } from 'styled-components';
 import Router from './client/Router';
 
 const GlobalStyle = createGlobalStyle`
-  * {
+  *,
+  button,
+  input {
     box-sizing: border-box;
+    font-family: 'Poppins', 'Noto Sans KR', sans-serif;
   }
 
   html,

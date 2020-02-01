@@ -5,6 +5,7 @@ import Page from '../components/atoms/Page';
 import Text from '../components/atoms/Text';
 import Footer from '../components/organisms/Footer';
 import RoomCard from '../components/organisms/RoomCard';
+import CreateCard from '../components/organisms/CreateCard';
 
 export const Home: React.FC = () => {
   const onClickHash = (hash: string): string => window.location.hash = `#${hash}`;
@@ -35,6 +36,7 @@ export const Home: React.FC = () => {
             <RoomCard />
             <RoomCard />
             <RoomCard />
+            <CreateCard />
           </Cards>
         </Section>
       </Content>
@@ -56,6 +58,7 @@ const LoginPage = styled(Page)`
 
 const Top = styled.div`
   width: 83%;
+  max-width: 1200px;
   display: flex;
   justify-content: flex-end;
 `;
@@ -103,6 +106,7 @@ const Icon = styled.button`
 
 const Content = styled.main`
   width: 83%;
+  max-width: 1200px;
   display: flex;
   flex-direction: column;
 `;

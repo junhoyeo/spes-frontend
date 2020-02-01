@@ -63,6 +63,16 @@ const Container = styled.div`
     align-items: flex-start;
     position: relative;
   }
+
+  @media (max-width: 580px) {
+    width: 100%;
+    flex-basis: unset;
+
+    & > div {
+      width: 100% !important;
+      height: fit-content !important;
+    }
+  }
 `;
 
 const Image = styled.img`
@@ -81,6 +91,12 @@ const Info = styled.div`
   align-items: flex-start;
   position: absolute;
   bottom: 1rem;
+
+  @media (max-width: 580px) {
+    position: unset;
+    bottom: unset;
+    margin-top: 1rem;
+  }
 `;
 
 const Title = styled(Text)`

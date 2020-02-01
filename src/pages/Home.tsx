@@ -6,6 +6,8 @@ import { Text } from '../components/atoms/Text';
 import RoomCard from '../components/organisms/RoomCard';
 
 export const Home: React.FC = () => {
+  const onClickHash = (hash: string): string => window.location.hash = `#${hash}`;
+
   return (
     <LoginPage>
       <Top>
@@ -18,7 +20,10 @@ export const Home: React.FC = () => {
       </Top>
       <Content>
         <Section>
-          <Title>
+          <Title
+            id="created"
+            onClick={() => onClickHash('created')}
+          >
             <i className="fas fa-paperclip" />
             내 목표방
           </Title>
@@ -27,7 +32,10 @@ export const Home: React.FC = () => {
           </Cards>
         </Section>
         <Section>
-          <Title>
+          <Title
+            id="helping"
+            onClick={() => onClickHash('helping')}
+          >
             <i className="fas fa-paperclip" />
             내가 도와주는 목표방
           </Title>

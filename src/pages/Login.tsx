@@ -76,6 +76,10 @@ const LoginPage = styled(Page)`
 
 const CardContent = styled.div`
   display: flex;
+
+  @media (max-width: 820px) {
+    flex-direction: column;
+  }
 `;
 
 const Section = styled.section`
@@ -153,6 +157,14 @@ const Form = styled(Section)`
       &:hover {
         border: 3px solid rgba(255, 255, 255, 0.4) !important;
       }
+
+      @media (max-width: 1000px) {
+        padding: 10px 0 !important;
+      }
     }
+  }
+
+  @media (max-width: 1000px) {
+    width: 20rem;
   }
 `;

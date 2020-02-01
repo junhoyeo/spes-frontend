@@ -11,6 +11,10 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: 'Poppins', 'Noto Sans KR', sans-serif;
     user-select: none;
+
+    &:focus {
+      outline: none;
+    }
   }
 
   html,

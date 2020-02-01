@@ -42,9 +42,14 @@ export default RoomCard;
 
 const Container = styled.div`
   cursor: pointer;
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 12%;
+  width: 215px;
+  margin-bottom: 1.5rem;
 
   & > div {
-    width: 250px !important;
+    width: 215px !important;
     height: 312px !important;
     border: 3px solid rgba(255, 255, 255, 0.4);
     background: linear-gradient(145deg,rgb(224,229,236),rgb(232,238,247));

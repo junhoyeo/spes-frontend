@@ -98,7 +98,8 @@ const LogoImage = styled.div`
 const Image = styled.img`
   width: 6.8rem;
   height: 6.8rem;
-  margin-top: -5px;
+  margin-top: 3.5px;
+  margin-left: 3.5px;
 `;
 
 const Title = styled(Text)`

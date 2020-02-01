@@ -33,6 +33,11 @@ export const Home: React.FC = () => {
           </Title>
           <Cards>
             <RoomCard />
+            <RoomCard />
+            <RoomCard />
+            <RoomCard />
+            <RoomCard />
+            <RoomCard />
           </Cards>
         </Section>
       </Content>
@@ -122,6 +127,7 @@ const Title = styled(Text)`
   i.fa-paperclip {
     color: rgba(27, 41, 68, 0.5);
     margin-right: 0.8rem;
+    transition: color 0.3s ease-in-out;
   }
 
   &:hover {
@@ -133,4 +139,8 @@ const Title = styled(Text)`
 `;
 
 const Cards = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
 `;

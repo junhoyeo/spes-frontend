@@ -54,6 +54,7 @@ const LoginPage = styled(Page)`
   align-items: center;
   height: 100%;
 
+  /* for overriding styles in neumorphic-ui */
   & > div {
     width: fit-content !important;
     height: fit-content !important;
@@ -69,7 +70,6 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: space-between; */
   justify-content: center;
 `;
 
@@ -121,6 +121,7 @@ const Form = styled(Section)`
   width: 30rem;
 
   div {
+    /* for overriding styles in neumorphic-ui */
     width: inherit !important;
     font-size: 0.85rem;
     margin-bottom: 0.5rem;
@@ -130,9 +131,5 @@ const Form = styled(Section)`
       font-size: 0.8rem;
       padding: 1.5rem 0.8rem !important;
     }
-
-    /* login button */
-    /* &:nth-child(3) {
-    } */
   }
 `;

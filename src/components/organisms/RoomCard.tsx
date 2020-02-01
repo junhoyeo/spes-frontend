@@ -48,6 +48,7 @@ const Container = styled.div`
   width: 215px;
   margin-bottom: 1.5rem;
 
+  /* for overriding styles in neumorphic-ui */
   & > div {
     width: 215px !important;
     height: 312px !important;

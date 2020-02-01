@@ -19,6 +19,7 @@ export const Home: React.FC = () => {
       <Content>
         <Section>
           <Title>
+            <i className="fas fa-paperclip" />
             내 목표방
           </Title>
           <Cards>
@@ -27,6 +28,7 @@ export const Home: React.FC = () => {
         </Section>
         <Section>
           <Title>
+            <i className="fas fa-paperclip" />
             내가 도와주는 목표방
           </Title>
           <Cards>
@@ -114,6 +116,20 @@ const Title = styled(Text)`
   color: #1B2944;
   font-weight: 900;
   font-size: 2rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+
+  i.fa-paperclip {
+    color: rgba(27, 41, 68, 0.5);
+    margin-right: 0.8rem;
+  }
+
+  &:hover {
+
+    i.fa-paperclip {
+      color: #1B2944;
+    }
+  }
 `;
 
 const Cards = styled.div`

@@ -10,6 +10,8 @@ import {
 import { Page } from '../components/atoms/Page';
 import { Text } from '../components/atoms/Text';
 
+import logo from '../assets/logo.svg';
+
 export const Login: React.FC = () => {
   return (
     <LoginPage>
@@ -20,7 +22,7 @@ export const Login: React.FC = () => {
           <Section>
             <BrandWrap>
               <LogoImage
-                src="https://via.placeholder.com/150"
+                src={logo}
               />
               <Title>
                 새해 소망을 이룰 수 있는 희망, Spes™
@@ -85,6 +87,7 @@ const LogoImage = styled.img`
     rgba(255, 255, 255, 0.5) -3px -3px 4px inset,
     rgba(163, 177, 198, 0.6) 9px 9px 16px;
   margin-bottom: 2rem;
+  background-color: white;
 `;
 
 const Title = styled(Text)`

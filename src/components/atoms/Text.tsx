@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Text = styled.span`
   display: inline-block;
-  margin-bottom: 20px;
   overflow-wrap: break-word;
   font-size: 20px;
   font-weight: 900;

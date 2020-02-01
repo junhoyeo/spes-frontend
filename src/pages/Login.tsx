@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components';
 
 import {
@@ -12,7 +13,9 @@ import { Text } from '../components/atoms/Text';
 
 import logo from '../assets/logo.svg';
 
-export const Login: React.FC = () => {
+const Login: React.FC<RouteComponentProps> = ({ history }) => {
+  const onClickLogin = () => history.push('/');
+
   return (
     <LoginPage>
       <NeuCard
@@ -35,10 +38,20 @@ export const Login: React.FC = () => {
             <FormTitle>
               쉽고 간단하게 로그인.
             </FormTitle>
-            <NeuInput placeholder="아이디" />
-            <NeuInput placeholder="비밀번호" />
-            <NeuButton text="로그인" />
-            <NeuButton text="회원가입" />
+            <NeuInput
+              placeholder="아이디"
+            />
+            <NeuInput
+              placeholder="비밀번호"
+            />
+            <NeuButton
+              text="로그인"
+              onClick={onClickLogin}
+            />
+            <NeuButton
+              text="회원가입"
+              onClick={onClickLogin}
+            />
           </Form>
         </CardContent>
       </NeuCard>
@@ -46,7 +59,7 @@ export const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default withRouter(Login);
 
 const LoginPage = styled(Page)`
   display: flex;
@@ -130,6 +143,16 @@ const Form = styled(Section)`
       width: inherit !important;
       font-size: 0.8rem;
       padding: 1.5rem 0.8rem !important;
+    }
+
+    &:nth-child(4),
+    &:nth-child(5) {
+      border: 3px solid rgb(224, 229, 236) !important;
+      transition: border-color 0.3s ease-in-out;
+
+      &:hover {
+        border: 3px solid rgba(255, 255, 255, 0.4) !important;
+      }
     }
   }
 `;

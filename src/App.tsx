@@ -25,7 +25,7 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
-      <BrowserRouter basename={window.location.pathname || ''}>
+      <BrowserRouter basename="/">
         <Router />
       </BrowserRouter>
     </>

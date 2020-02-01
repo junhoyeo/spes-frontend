@@ -21,9 +21,11 @@ export const Login: React.FC = () => {
         <CardContent>
           <Section>
             <BrandWrap>
-              <LogoImage
-                src={logo}
-              />
+              <LogoImage>
+                <Image
+                  src={logo}
+                />
+              </LogoImage>
               <Title>
                 새해 소망을 이룰 수 있는 희망, Spes™
               </Title>
@@ -52,7 +54,7 @@ const LoginPage = styled(Page)`
   align-items: center;
   height: 100%;
 
-  div {
+  & > div {
     width: fit-content !important;
     height: fit-content !important;
   }
@@ -77,7 +79,7 @@ const BrandWrap = styled.div`
   align-items: center;
 `;
 
-const LogoImage = styled.img`
+const LogoImage = styled.div`
   width: 10rem;
   height: 10rem;
   border-radius: 5rem;
@@ -88,6 +90,15 @@ const LogoImage = styled.img`
     rgba(163, 177, 198, 0.6) 9px 9px 16px;
   margin-bottom: 2rem;
   background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Image = styled.img`
+  width: 6.8rem;
+  height: 6.8rem;
+  margin-top: -5px;
 `;
 
 const Title = styled(Text)`

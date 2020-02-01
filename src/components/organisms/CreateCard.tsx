@@ -20,9 +20,7 @@ export default CreateCard;
 const Container = styled.div`
   cursor: pointer;
   display: flex;
-  flex-basis: 12%;
-  margin-bottom: 1.5rem;
-  width: 215px;
+  flex-basis: 21%;
   height: 312px;
   border: 3px solid rgba(255, 255, 255, 0.4);
   border-radius: 30px;

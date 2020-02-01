@@ -140,8 +140,8 @@ const Title = styled(Text)`
 `;
 
 const Cards = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 100%;
+  display: grid;
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  grid-template-columns: repeat(auto-fill,minmax(252px, 1fr));
 `;

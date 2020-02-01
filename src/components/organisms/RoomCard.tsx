@@ -44,13 +44,11 @@ const Container = styled.div`
   cursor: pointer;
   display: flex;
   flex-grow: 1;
-  flex-basis: 12%;
-  width: 215px;
-  margin-bottom: 1.5rem;
+  flex-basis: 21%;
 
   /* for overriding styles in neumorphic-ui */
   & > div {
-    width: 215px !important;
+    width: 100% !important;
     height: 312px !important;
     border: 3px solid rgba(255, 255, 255, 0.4);
     background: linear-gradient(145deg,rgb(224,229,236),rgb(232,238,247));
@@ -90,7 +88,10 @@ const Info = styled.div`
   flex-direction: column;
   align-items: flex-start;
   position: absolute;
-  bottom: 1rem;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  padding: 0 20px;
 
   @media (max-width: 580px) {
     position: unset;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 
 import Router from './client/Router';
@@ -25,9 +25,9 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
-      <HashRouter basename={window.location.pathname || ''}>
+      <BrowserRouter basename={window.location.pathname || ''}>
         <Router />
-      </HashRouter>
+      </BrowserRouter>
     </>
   );
 }

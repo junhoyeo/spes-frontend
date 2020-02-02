@@ -8,7 +8,11 @@ interface IFooter extends RouteComponentProps {
 }
 
 const Footer: React.FC<IFooter> = ({ history, className = '' }) => {
-  const onClickLogout = () => history.push('/auth/login');
+  const onClickLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    history.push('/auth/login');
+  };
 
   return (
     <Container className={className}>

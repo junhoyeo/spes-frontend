@@ -81,6 +81,7 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
               { modeForJoin ? '빠르게 회원가입 진행.' : '쉽고 간단하게 로그인.' }
             </FormTitle>
             <NeuInput
+              type="email"
               value={email}
               placeholder="이메일"
               onChange={(e: any) => setEmail(e.target.value)}
@@ -88,12 +89,14 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
             {
               modeForJoin &&
                 <NeuInput
+                  type="text"
                   value={username}
                   placeholder="사용자 이름"
                   onChange={(e: any) => setUsername(e.target.value)}
                 />
             }
             <NeuInput
+              type="password"
               value={password}
               placeholder="비밀번호"
               onChange={(e: any) => setPassword(e.target.value)}

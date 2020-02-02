@@ -4,17 +4,16 @@ import styled from 'styled-components';
 
 import Navbar from '../components/atoms/Navbar';
 import Page from '../components/atoms/Page';
-import Text from '../components/atoms/Text';
 import PointIcon from '../components/molecules/PointIcon';
 import CrownIcon from '../components/molecules/CrownIcon';
 import Footer from '../components/organisms/Footer';
 import RoomCard from '../components/organisms/RoomCard';
 import CreateCard from '../components/organisms/CreateCard';
 import PageTitle from '../components/molecules/PageTitle';
+import HashTitle from '../components/molecules/HashTitle';
 
 export const Home: React.FC<RouteComponentProps> = ({ history }) => {
   const onClickCrown = () => history.push('/rank');
-  const onClickHash = (hash: string): string => window.location.hash = `#${hash}`;
 
   return (
     <LoginPage>
@@ -35,13 +34,10 @@ export const Home: React.FC<RouteComponentProps> = ({ history }) => {
       </SpacedNavbar>
       <Content>
         <Section>
-          <Title
+          <HashTitle
             id="created"
-            onClick={() => onClickHash('created')}
-          >
-            <i className="fas fa-paperclip" />
-            내 목표방
-          </Title>
+            text="내 목표방"
+          />
           <Cards>
             <RoomCard />
             <RoomCard />
@@ -89,25 +85,6 @@ const Section = styled.section`
 
   &:last-child {
     margin-bottom: 5rem;
-  }
-`;
-
-const Title = styled(Text)`
-  color: rgba(27, 41, 68, 0.5);
-  font-weight: 900;
-  font-size: 2rem;
-  margin-bottom: 1rem;
-
-  i.fa-paperclip {
-    margin-right: 0.8rem;
-    transition: color 0.3s ease-in-out;
-  }
-
-  &:hover {
-
-    i.fa-paperclip {
-      color: #1B2944;
-    }
   }
 `;
 

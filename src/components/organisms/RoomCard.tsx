@@ -4,9 +4,16 @@ import styled from 'styled-components';
 import { NeuCard } from 'neumorphic-ui';
 import Text from '../atoms/Text';
 
-export const RoomCard: React.FC = () => {
+import { RouteComponentProps, withRouter } from 'react-router-dom';
+
+interface RoomCardProps extends RouteComponentProps {
+}
+
+export const RoomCard: React.FC<RoomCardProps> = ({ history }) => {
+  const onClickCard = () => history.push('/room');
+
   return (
-    <Container>
+    <Container onClick={onClickCard}>
       <NeuCard>
         <Image
           src="https://avatars0.githubusercontent.com/u/32605822?s=200"
@@ -38,7 +45,7 @@ export const RoomCard: React.FC = () => {
   );
 };
 
-export default RoomCard;
+export default withRouter(RoomCard);
 
 const Container = styled.div`
   cursor: pointer;

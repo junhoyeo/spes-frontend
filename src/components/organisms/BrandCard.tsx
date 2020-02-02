@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import logo from '../../assets/logo.svg';
 
@@ -7,11 +7,17 @@ import { Text } from '../atoms/Text';
 
 type BrandCardProps = {
   title: string;
+  src?: string;
 };
 
-const BrandCard: React.FC<BrandCardProps> = ({ title }) => (
+const BrandCard: React.FC<BrandCardProps> = ({
+  title,
+  src = '',
+}) => (
   <BrandWrap>
-    <LogoImage>
+    <LogoImage
+      src={src}
+    >
       <Image
         src={logo}
       />
@@ -30,7 +36,11 @@ const BrandWrap = styled.div`
   align-items: center;
 `;
 
-const LogoImage = styled.div`
+type ImageProps = {
+  src: string;
+};
+
+const LogoImage = styled.div<ImageProps>`
   width: 10rem;
   height: 10rem;
   border-radius: 5rem;
@@ -44,6 +54,15 @@ const LogoImage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  ${({ src = '' }) => src && css`
+    background-image: url(${src});
+    background-size: cover;
+
+    img {
+      display: none;
+    }
+  `}
 `;
 
 const Image = styled.img`

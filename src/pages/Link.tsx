@@ -20,7 +20,10 @@ const Link: React.FC = () => {
       <NeuCard>
         <CardContent>
           <Section>
-            <BrandCard title="친구가 Spes™를 함께 사용하고 싶다네요." />
+            <BrandCard
+              title="친구가 Spes™를 함께 사용하고 싶다네요."
+              src="https://avatars0.githubusercontent.com/u/32605822?s=200"
+            />
           </Section>
           <Form>
             <FormTitle>
@@ -58,5 +61,4 @@ const LinkPage = styled(Page)`
     width: fit-content !important;
     height: fit-content !important;
   }
-
 `;

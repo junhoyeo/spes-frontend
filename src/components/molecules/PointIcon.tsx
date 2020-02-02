@@ -6,6 +6,7 @@ export const PointIcon = styled(Icon)`
   color: black;
   font-weight: 800;
   font-size: 1.5rem;
+  pointer-events:none;
 `;
 
 export default PointIcon;

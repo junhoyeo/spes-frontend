@@ -13,7 +13,9 @@ export const RankCard: React.FC = () => {
             <Profile
               src="https://avatars0.githubusercontent.com/u/32605822?s=200"
             >
-              <RankNumber>
+              <RankNumber
+                className="medal"
+              >
                 1
               </RankNumber>
             </Profile>
@@ -45,6 +47,33 @@ const Container = styled.div`
   & > div {
     height: fit-content !important;
     padding: 1rem !important;
+  }
+
+  &:first-child {
+
+    span.medal {
+      background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+      border: 3px solid #f6d365;
+      color: white;
+    }
+  }
+
+  &:nth-child(2) {
+
+    span.medal {
+      background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+      border: 3px solid #cfd9df;
+      color: white;
+    }
+  }
+
+  &:nth-child(3) {
+
+    span.medal {
+      background-image: linear-gradient(to top, #c79081 0%, #dfa579 100%);
+      border: 3px solid #c79081;
+      color: white;
+    }
   }
 `;
 
@@ -81,7 +110,9 @@ const RankNumber = styled(Text)`
   left: -10px;
 
   background: linear-gradient(145deg,rgb(224,229,236),rgb(232,238,247));
-  box-shadow: 30px 30px 40px rgba(163,177,198,0.4), -30px -30px 40px rgba(163,177,198,0.3);
+  box-shadow:
+    30px 30px 40px rgba(163,177,198,0.4),
+    -30px -30px 40px rgba(163,177,198,0.3);
   border: 3px solid rgba(255,255,255,0.4);
   width: 3rem;
   height: 3rem;
@@ -89,6 +120,7 @@ const RankNumber = styled(Text)`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
+  text-shadow: 1px 2px 32px rgba(0, 0, 0, 0.35);
 `;
 
 const UserMeta = styled.div`

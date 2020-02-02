@@ -60,6 +60,11 @@ const Container = styled.div`
     flex-direction: column;
     align-items: flex-start;
     position: relative;
+
+    &:hover {
+      background: rgb(163,177,198);
+      border-color: rgba(255, 255, 255, 0.8);
+    }
   }
 
   @media (max-width: 580px) {

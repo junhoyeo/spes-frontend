@@ -24,6 +24,25 @@ const Footer: React.FC<IFooter> = ({ history, className = '' }) => {
   );
 };
 
+const FooterForLinkWithoutRouter: React.FC<IFooter> = ({ history, className = '' }) => {
+  const onClickHome = () => history.push('/');
+
+  return (
+    <Container className={className} style={{position: 'absolute', bottom: 0}}>
+      <NeuCard>
+        <ButtonWrapper>
+          <NeuButton
+            text="Spes™ 알아보기"
+            onClick={onClickHome}
+          />
+        </ButtonWrapper>
+      </NeuCard>
+    </Container>
+  );
+};
+
+export const FooterForLink = withRouter(FooterForLinkWithoutRouter);
+
 export default withRouter(Footer);
 
 const Container = styled.footer`

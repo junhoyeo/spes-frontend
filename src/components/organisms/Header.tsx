@@ -9,18 +9,22 @@ import PageTitle from '../molecules/PageTitle';
 interface IHeader extends RouteComponentProps {
   title: string;
   className?: string;
+  onlyText?: boolean;
 }
 
-const Header = ({ history, title, className='' }: IHeader) => {
+const Header = ({ history, title, className='', onlyText=false }: IHeader) => {
   const onClickBack = () => history.goBack();
 
   return (
     <LeftAlignedNavbar className={className}>
-      <ArrowIcon
-        onClick={onClickBack}
-      >
-        <i className="fas fa-arrow-left" />
-      </ArrowIcon>
+      {!onlyText ?
+        <ArrowIcon
+          onClick={onClickBack}
+        >
+          <i className="fas fa-arrow-left" />
+        </ArrowIcon>
+        : (null)
+      }
       <PageTitle>
         {title}
       </PageTitle>

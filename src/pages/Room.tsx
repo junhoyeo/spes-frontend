@@ -7,6 +7,7 @@ import { Text } from '../components/atoms/Text';
 import HashTitle from '../components/molecules/HashTitle';
 import Footer from '../components/organisms/Footer';
 import { NeuButton, NeuInput } from 'neumorphic-ui';
+import PostCard from '../components/organisms/PostCard';
 
 const Room: React.FC = () => {
   const [image, setImage] = useState<string>('http://via.placeholder.com/150.png');
@@ -56,6 +57,7 @@ const Room: React.FC = () => {
             text="목록"
           />
           <SectionContent>
+            <PostCard />
           </SectionContent>
         </Section>
       </PageContent>

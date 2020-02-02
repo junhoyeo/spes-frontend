@@ -10,15 +10,16 @@ export const RankCard: React.FC = () => {
       <NeuCard>
         <ContentWrapper>
           <UserInfo>
-            <Profile
+            <Image
               src="https://avatars0.githubusercontent.com/u/32605822?s=200"
+              draggable="false"
             >
               <RankNumber
                 className="medal"
               >
                 1
               </RankNumber>
-            </Profile>
+            </Image>
             <UserMeta>
               <Name>
                 여준호
@@ -43,6 +44,12 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   margin-bottom: 1rem;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  background: linear-gradient(145deg,rgb(224,229,236),rgb(232,238,247));
+  box-shadow:
+    30px 30px 40px rgba(163,177,198,0.3),
+    -30px -30px 40px rgba(163,177,198,0.2) !important;
+  border-radius: 30px !important;
 
   & > div {
     height: fit-content !important;
@@ -88,15 +95,20 @@ const UserInfo = styled.div`
   align-items: center;
 `;
 
-type ProfileProps = {
+type ImageProps = {
   src: string;
 };
 
-const Profile = styled.div<ProfileProps>`
+const Image = styled.div<ImageProps>`
   width: 120px;
   height: 120px;
   position: relative;
   background-size: contain;
+  border: 3px solid #E5E9F1;
+  box-shadow:
+    15px 15px 16px rgba(163,177,198,0.3),
+    -15px -15px 16px rgba(163,177,198,0.2);
+  border-radius: 30px;
 
   ${({ src }) => src && css`
     background-image: url(${src});
@@ -109,7 +121,8 @@ const RankNumber = styled(Text)`
   bottom: -10px;
   left: -10px;
 
-  background: linear-gradient(145deg,rgb(224,229,236),rgb(232,238,247));
+  color: rgb(232, 238, 247);
+  background-color: #cad5e3;
   box-shadow:
     30px 30px 40px rgba(163,177,198,0.4),
     -30px -30px 40px rgba(163,177,198,0.3);
@@ -132,13 +145,16 @@ const UserMeta = styled.div`
 
 const Name = styled(Text)`
   font-size: 1.8rem;
+  color: #5b6470;
 `;
 
 const RoomNumber = styled(Text)`
   font-size: 1.5rem;
+  color: #78879A;
 `;
 
 const PointNumber = styled(Text)`
   margin-right: 1rem;
   font-size: 2rem;
+  color: #1B2944;
 `;

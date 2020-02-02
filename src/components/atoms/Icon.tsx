@@ -21,6 +21,11 @@ export const Icon = styled.button`
   &:not(:last-child) {
     margin-right: 1rem;
   }
+
+  &:hover {
+    background: linear-gradient(145deg, rgb(163, 177, 198, 0.5), rgb(232, 238, 247));
+    box-shadow: inset 15px 15px 20px -20px rgba(163, 177, 198, 0.5);
+  }
 `;
 
 export default Icon;

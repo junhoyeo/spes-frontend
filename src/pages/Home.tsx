@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Navbar from '../components/atoms/Navbar';
@@ -10,7 +11,8 @@ import Footer from '../components/organisms/Footer';
 import RoomCard from '../components/organisms/RoomCard';
 import CreateCard from '../components/organisms/CreateCard';
 
-export const Home: React.FC = () => {
+export const Home: React.FC<RouteComponentProps> = ({ history }) => {
+  const onClickCrown = () => history.push('/rank');
   const onClickHash = (hash: string): string => window.location.hash = `#${hash}`;
 
   return (
@@ -19,7 +21,9 @@ export const Home: React.FC = () => {
         <PointIcon>
           1500p
         </PointIcon>
-        <CrownIcon>
+        <CrownIcon
+          onClick={onClickCrown}
+        >
           <i className="fas fa-crown" />
         </CrownIcon>
       </Navbar>
@@ -48,7 +52,7 @@ export const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default withRouter(Home);
 
 const LoginPage = styled(Page)`
   width: 100%;

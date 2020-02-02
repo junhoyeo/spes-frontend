@@ -12,6 +12,11 @@ export const CrownIcon = styled(Icon)`
     font-size: 2rem;
     color: white;
   }
+
+  &:hover {
+    background: linear-gradient(145deg, rgba(248, 209, 42), #FBD961);
+    box-shadow: inset 15px 15px 20px -20px rgba(128, 129, 42, 0.3);
+  }
 `;
 
 export default CrownIcon;

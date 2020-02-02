@@ -6,6 +6,7 @@ import PageTitle from '../components/molecules/PageTitle';
 import { Text } from '../components/atoms/Text';
 import HashTitle from '../components/molecules/HashTitle';
 import Footer from '../components/organisms/Footer';
+import { NeuButton, NeuInput } from 'neumorphic-ui';
 
 const Room: React.FC = () => {
   return (
@@ -30,8 +31,19 @@ const Room: React.FC = () => {
             id="write"
             text="글쓰기"
           />
-          <SectionContent>
-          </SectionContent>
+          <FormWrap>
+            <Image src="https://github.com/junhoyeo.png" />
+            <Form>
+              <NeuInput
+                type="text"
+                placeholder="오늘은 어떻게 노력했나요?"
+              />
+              <input type="file" />
+              <NeuButton
+                text="작성하기"
+              />
+            </Form>
+          </FormWrap>
         </Section>
         <Section>
           <FittedHashTitle
@@ -92,4 +104,55 @@ const SectionContent = styled(Text)`
 
 const FittedHashTitle = styled(HashTitle)`
   width: fit-content;
+`;
+
+const FormWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const Image = styled.img`
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  margin-right: 1rem;
+  border: 3px solid #E5E9F1;
+  box-shadow:
+    15px 15px 16px rgba(163,177,198,0.3),
+    -15px -15px 16px rgba(163,177,198,0.2);
+  border-radius: 30px;
+`;
+
+const Form = styled.div`
+  width: calc(100% - 120px);
+
+  & > div {
+    width: 100% !important;
+
+    input {
+      width: inherit !important;
+      font-size: 0.95rem;
+      padding: 1.5rem 0.8rem !important;
+    }
+  }
+
+  /* styles for file input tag */
+  & > input {
+    font-size: 1.1rem;
+    display: flex;
+    margin: 1rem 0;
+    font-weight: 800;
+    color: rgb(185, 194, 206);
+  }
+
+  & > input + div {
+    border: 3px solid rgb(224, 229, 236) !important;
+    transition: border-color 0.3s ease-in-out;
+    padding: 13.5px 0 !important;
+
+    &:hover {
+      border: 3px solid rgba(255, 255, 255, 0.4) !important;
+    }
+  }
 `;

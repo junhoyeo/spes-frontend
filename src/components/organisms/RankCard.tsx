@@ -112,6 +112,7 @@ const Image = styled.div<ImageProps>`
 
   ${({ src }) => src && css`
     background-image: url(${src});
+    background-size: cover;
   `}
 `;
 

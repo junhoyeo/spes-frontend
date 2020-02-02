@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Icon from '../components/atoms/Icon';
@@ -6,13 +7,17 @@ import Navbar from '../components/atoms/Navbar';
 import Page from '../components/atoms/Page';
 import Footer from '../components/organisms/Footer';
 import PageTitle from '../components/molecules/PageTitle';
-import { RankCard } from '../components/organisms/RankCard';
+import RankCard from '../components/organisms/RankCard';
 
-const Rank: React.FC = () => {
+const Rank: React.FC<RouteComponentProps> = ({ history }) => {
+  const onClickBack = () => history.goBack();
+
   return (
     <RankPage>
       <LeftAlignedNavbar>
-        <ArrowIcon>
+        <ArrowIcon
+          onClick={onClickBack}
+        >
           <i className="fas fa-arrow-left" />
         </ArrowIcon>
         <PageTitle>
@@ -31,7 +36,7 @@ const Rank: React.FC = () => {
   );
 };
 
-export default Rank;
+export default withRouter(Rank);
 
 const LeftAlignedNavbar = styled(Navbar)`
   justify-content: flex-start;
@@ -55,4 +60,9 @@ const RankPage = styled(Page)`
 `;
 
 const Section = styled.div`
+  width: 83%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1rem;
 `;

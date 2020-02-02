@@ -3,11 +3,15 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components';
 import { NeuButton, NeuCard } from 'neumorphic-ui';
 
-const Footer: React.FC<RouteComponentProps> = ({ history }) => {
+interface IFooter extends RouteComponentProps {
+  className?: string;
+}
+
+const Footer: React.FC<IFooter> = ({ history, className = '' }) => {
   const onClickLogout = () => history.push('/auth/login');
 
   return (
-    <Container>
+    <Container className={className}>
       <NeuCard>
         <ButtonWrapper>
           <NeuButton

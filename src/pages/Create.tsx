@@ -5,9 +5,11 @@ import BrandCard from '../components/organisms/BrandCard';
 import Header from '../components/organisms/Header';
 import { Page } from '../components/atoms/Page';
 import { CardContent, Section, Form, FormTitle } from '../components/atoms/Form';
+import Footer from '../components/organisms/Footer';
 
 const Create: React.FC = () => {
   return (
+    <div style={{height: '100%', position: 'relative'}}>
     <CreatePage>
       <Header className="header" title="목표방 만들기" />
       <NeuCard>
@@ -30,7 +32,9 @@ const Create: React.FC = () => {
           </Form>
         </CardContent>
       </NeuCard>
+      <CustomFooter />
     </CreatePage>
+    </div>
   );
 };
 
@@ -55,4 +59,11 @@ const CreatePage = styled(Page)`
 
 const DummyDiv = styled.div`
   display: none;
+`;
+
+const CustomFooter = styled(Footer)`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right:0;
 `;

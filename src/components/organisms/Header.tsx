@@ -8,13 +8,14 @@ import PageTitle from '../molecules/PageTitle';
 
 interface IHeader extends RouteComponentProps {
   title: string;
+  className?: string;
 }
 
-const Header = ({ history, title }: IHeader) => {
+const Header = ({ history, title, className='' }: IHeader) => {
   const onClickBack = () => history.goBack();
 
   return (
-    <LeftAlignedNavbar>
+    <LeftAlignedNavbar className={className}>
       <ArrowIcon
         onClick={onClickBack}
       >

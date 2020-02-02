@@ -1,10 +1,13 @@
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import * as React from 'react';
 import styled from 'styled-components';
 import Text from '../atoms/Text';
 
-const CreateCard: React.FC = () => {
+const CreateCard: React.FC<RouteComponentProps> = ({ history }) => {
+  const onClickCreate = () => history.push('/create');
+
   return (
-    <Container>
+    <Container onClick={onClickCreate}>
       <Content>
         <i className="far fa-plus-square" />
         <Title>
@@ -15,7 +18,7 @@ const CreateCard: React.FC = () => {
   );
 };
 
-export default CreateCard;
+export default withRouter(CreateCard);
 
 const Container = styled.div`
   cursor: pointer;

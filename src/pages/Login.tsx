@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components';
+import jwtDecode from 'jwt-decode';
+import axios from 'axios';
 
 import {
   NeuButton,
@@ -15,12 +17,26 @@ import { CardContent, Section, Form, FormTitle } from '../components/atoms/Form'
 
 const Login: React.FC<RouteComponentProps> = ({ history }) => {
   const [modeForJoin, setModeForJoin] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>('');
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
   const onClickJoin = () => {
     toast("회원가입 성공! 이제, 로그인 해주세요.");
-    setModeForJoin(false)
+    setModeForJoin(false);
   };
-  const onClickLogin = () => history.push('/');
+
+  const onClickLogin = async () => {
+    const payload = {
+      email,
+      password,
+    };
+    axios.defaults.baseURL = 'http://spes-psbxv.run.goorm.io/';
+    axios.defaults.headers.common['Accept'] = '*/*';
+    const { data } = await axios.post('/api/auth/login', payload);
+    console.log(data);
+    history.push('/');
+  };
 
   const onClickMoveToJoin = () => setModeForJoin(true);
   const onClickMoveToLogin = () => setModeForJoin(false);
@@ -40,15 +56,18 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
             </FormTitle>
             <NeuInput
               placeholder="이메일"
+              onChange={(e: any) => setEmail(e.target.value)}
             />
             {
               modeForJoin &&
                 <NeuInput
                   placeholder="사용자 이름"
+                  onChange={(e: any) => setUsername(e.target.value)}
                 />
             }
             <NeuInput
               placeholder="비밀번호"
+              onChange={(e: any) => setPassword(e.target.value)}
             />
             {(() => {
               if (modeForJoin) {

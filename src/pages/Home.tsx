@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -14,6 +14,16 @@ import HashTitle from '../components/molecules/HashTitle';
 
 export const Home: React.FC<RouteComponentProps> = ({ history }) => {
   const onClickCrown = () => history.push('/rank');
+
+  useEffect(
+    () => {
+      const token = localStorage.getItem('token') || '';
+      if (!token) {
+        history.push('/auth/login');
+      }
+    },
+    [history],
+  );
 
   return (
     <LoginPage>

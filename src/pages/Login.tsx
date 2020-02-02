@@ -21,8 +21,23 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
-  const onClickJoin = () => {
-    toast("회원가입 성공! 이제, 로그인 해주세요.");
+  const onClickJoin = async () => {
+    const payload = {
+      email,
+      username,
+      password,
+    };
+    axios.defaults.baseURL = 'http://spes-psbxv.run.goorm.io/';
+    axios.defaults.headers.common['Accept'] = '*/*';
+    try {
+      const { data } = await axios.post('/api/auth/register', payload);
+      console.log(data);
+      toast("회원가입 성공! 이제, 로그인 해주세요.");
+    } catch (error) {
+      console.log(error);
+      toast("회원가입 실패!");
+      return;
+    }
     setModeForJoin(false);
   };
 
@@ -33,8 +48,19 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
     };
     axios.defaults.baseURL = 'http://spes-psbxv.run.goorm.io/';
     axios.defaults.headers.common['Accept'] = '*/*';
-    const { data } = await axios.post('/api/auth/login', payload);
-    console.log(data);
+    try {
+      const { data: { token } } = await axios.post('/api/auth/login', payload);
+      console.log(token);
+      const { _id: id, email, username } = jwtDecode(token);
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify({
+        id, email, username,
+      }));
+    } catch (error) {
+      console.log(error);
+      toast('로그인 실패');
+      return;
+    }
     history.push('/');
   };
 
@@ -55,17 +81,20 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
               { modeForJoin ? '빠르게 회원가입 진행.' : '쉽고 간단하게 로그인.' }
             </FormTitle>
             <NeuInput
+              value={email}
               placeholder="이메일"
               onChange={(e: any) => setEmail(e.target.value)}
             />
             {
               modeForJoin &&
                 <NeuInput
+                  value={username}
                   placeholder="사용자 이름"
                   onChange={(e: any) => setUsername(e.target.value)}
                 />
             }
             <NeuInput
+              value={password}
               placeholder="비밀번호"
               onChange={(e: any) => setPassword(e.target.value)}
             />

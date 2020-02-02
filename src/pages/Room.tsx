@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Page } from '../components/atoms/Page';
 import Header from '../components/organisms/Header';
@@ -9,6 +9,11 @@ import Footer from '../components/organisms/Footer';
 import { NeuButton, NeuInput } from 'neumorphic-ui';
 
 const Room: React.FC = () => {
+  const [image, setImage] = useState<string>('http://via.placeholder.com/150.png');
+
+  const onChangeImage = (event: any) =>
+    setImage(URL.createObjectURL(event.target.files[0]));
+
   return (
     <RoomPage>
       <Header className="header" title="방 정보" />
@@ -32,13 +37,13 @@ const Room: React.FC = () => {
             text="글쓰기"
           />
           <FormWrap>
-            <Image src="https://github.com/junhoyeo.png" />
+            <Image src={image} />
             <Form>
+              <input type="file" onChange={onChangeImage} />
               <NeuInput
                 type="text"
                 placeholder="오늘은 어떻게 노력했나요?"
               />
-              <input type="file" />
               <NeuButton
                 text="작성하기"
               />
@@ -129,6 +134,7 @@ const Form = styled.div`
 
   & > div {
     width: 100% !important;
+    margin-bottom: 0.8rem;
 
     input {
       width: inherit !important;
@@ -141,12 +147,12 @@ const Form = styled.div`
   & > input {
     font-size: 1.1rem;
     display: flex;
-    margin: 1rem 0;
+    margin: 0.8rem 0;
     font-weight: 800;
     color: rgb(185, 194, 206);
   }
 
-  & > input + div {
+  & > div:nth-child(3) {
     border: 3px solid rgb(224, 229, 236) !important;
     transition: border-color 0.3s ease-in-out;
     padding: 13.5px 0 !important;

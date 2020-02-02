@@ -32,6 +32,7 @@ const Container = styled.footer`
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-radius: 0 !important;
   }
 `;
 

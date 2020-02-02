@@ -10,6 +10,7 @@ import CrownIcon from '../components/molecules/CrownIcon';
 import Footer from '../components/organisms/Footer';
 import RoomCard from '../components/organisms/RoomCard';
 import CreateCard from '../components/organisms/CreateCard';
+import PageTitle from '../components/molecules/PageTitle';
 
 export const Home: React.FC<RouteComponentProps> = ({ history }) => {
   const onClickCrown = () => history.push('/rank');
@@ -17,16 +18,21 @@ export const Home: React.FC<RouteComponentProps> = ({ history }) => {
 
   return (
     <LoginPage>
-      <Navbar>
-        <PointIcon>
-          1500p
-        </PointIcon>
-        <CrownIcon
-          onClick={onClickCrown}
-        >
-          <i className="fas fa-crown" />
-        </CrownIcon>
-      </Navbar>
+      <SpacedNavbar>
+        <PageTitle>
+          로비
+        </PageTitle>
+        <Icons>
+          <PointIcon>
+            1,500p
+          </PointIcon>
+          <CrownIcon
+            onClick={onClickCrown}
+          >
+            <i className="fas fa-crown" />
+          </CrownIcon>
+        </Icons>
+      </SpacedNavbar>
       <Content>
         <Section>
           <Title
@@ -63,6 +69,14 @@ const LoginPage = styled(Page)`
   padding: 2rem 0;
 `;
 
+const SpacedNavbar = styled(Navbar)`
+  justify-content: space-between;
+`;
+
+const Icons = styled.div`
+  display: flex;
+`;
+
 const Content = styled.main`
   width: 83%;
   max-width: 1200px;
@@ -79,13 +93,12 @@ const Section = styled.section`
 `;
 
 const Title = styled(Text)`
-  color: #1B2944;
+  color: rgba(27, 41, 68, 0.5);
   font-weight: 900;
   font-size: 2rem;
   margin-bottom: 1rem;
 
   i.fa-paperclip {
-    color: rgba(27, 41, 68, 0.5);
     margin-right: 0.8rem;
     transition: color 0.3s ease-in-out;
   }

@@ -5,6 +5,8 @@ export const Navbar = styled.div`
   max-width: 1200px;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 3.5rem;
 `;
 
 export default Navbar;

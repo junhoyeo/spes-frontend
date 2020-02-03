@@ -51,11 +51,7 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
     try {
       const { data: { token } } = await axios.post('/api/auth/login', payload);
       console.log(token);
-      const { _id: id, email, username } = jwtDecode(token);
       localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify({
-        id, email, username,
-      }));
     } catch (error) {
       console.log(error);
       toast('로그인 실패');

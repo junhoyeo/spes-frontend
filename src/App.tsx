@@ -2,16 +2,10 @@ import React from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import { BrowserRouter } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
-import admin from 'firebase-admin';
 
 import Router from './client/Router';
 
 import 'react-toastify/dist/ReactToastify.css';
-
-admin.initializeApp({
-  credential: admin.credential.cert(require('./key.json')),
-  databaseURL: "https://spes-76a0d.firebaseio.com",
-});
 
 const GlobalStyle = createGlobalStyle`
   *,

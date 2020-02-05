@@ -5,6 +5,7 @@ import Page from '../components/atoms/Page';
 import Footer from '../components/organisms/Footer';
 import RankCard from '../components/organisms/RankCard';
 import Header from '../components/organisms/Header';
+import Navbar from '../components/molecules/Navbar';
 
 const ranks = Array(8).fill({
   username: 'junhoyeo',
@@ -15,8 +16,11 @@ const ranks = Array(8).fill({
 
 const Rank: React.FC = () => {
   return (
-    <RankPage>
-      <Header title="달성률 랭킹" />
+    <Page>
+      <Navbar
+        title="달성률 랭킹"
+        showBack={true}
+      />
       <Section>
         {ranks.map((user, idx) => {
           const { username, profile, roomCount, points } = user;
@@ -33,20 +37,11 @@ const Rank: React.FC = () => {
         })}
       </Section>
       <Footer />
-    </RankPage>
+    </Page>
   );
 };
 
 export default Rank;
-
-const RankPage = styled(Page)`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem 0;
-`;
 
 const Section = styled.div`
   display: flex;

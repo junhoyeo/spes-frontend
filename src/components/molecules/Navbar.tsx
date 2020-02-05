@@ -3,19 +3,31 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Text } from '../atoms/Text';
+import TextButton from '../atoms/TextButton';
 
 type NavbarProps = {
   title: string;
+  showBack?: boolean;
 };
 
-const Navbar: React.FC<NavbarProps & RouteComponentProps> = ({ title, history }) => {
+const Navbar: React.FC<NavbarProps & RouteComponentProps> = ({ title, history, showBack = false }) => {
+  const onClickBack = () => history.goBack();
   const onClickRank = () => history.push('/rank');
 
   return (
     <Container>
-      <Title>
-        {title}
-      </Title>
+      <Head>
+        {!showBack ||
+          <TextButton
+            onClick={onClickBack}
+          >
+            뒤로가기
+          </TextButton>
+        }
+        <Title>
+          {title}
+        </Title>
+      </Head>
       <Meta>
         <Label onClick={onClickRank}>
           <i className="fas fa-crown" />
@@ -36,6 +48,12 @@ const Container = styled.nav`
   display: flex;
   width: 100%;
   justify-content: space-between;
+  align-items: flex-start;
+`;
+
+const Head = styled.div`
+  display: flex;
+  flex-direction: column;
   align-items: flex-start;
 `;
 

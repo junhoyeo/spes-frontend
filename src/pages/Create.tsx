@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { NeuButton, NeuCard, NeuInput } from 'neumorphic-ui';
-import BrandCard from '../components/organisms/BrandCard';
-import Header from '../components/organisms/Header';
 import { Page } from '../components/atoms/Page';
-import { CardContent, Section, Form, FormTitle } from '../components/atoms/Form';
 import Footer from '../components/organisms/Footer';
+import Navbar from '../components/molecules/Navbar';
+import Text from '../components/atoms/Text';
+import Input from '../components/molecules/Input';
+
+import formImage from '../assets/illusts/form.svg';
+import Button from '../components/atoms/Button';
 
 const Create: React.FC = () => {
   const [name, setName] = useState<string>('');
   const [goal, setGoal] = useState<string>('');
+  const [finish, setFinish] = useState<string>('');
 
   const onClickCreate = () => {
     const userJSON = localStorage.getItem('user') as string || '{}';
@@ -25,66 +28,79 @@ const Create: React.FC = () => {
   };
 
   return (
-    <div style={{height: '100%', position: 'relative'}}>
     <CreatePage>
-      <Header className="header" title="목표방 만들기" />
-      <NeuCard>
-        <CardContent>
-          <Section>
-            <BrandCard title="Spes™로 새로운 목표를 이루어 보세요." />
-          </Section>
-          <Form>
-            <FormTitle>
-              친구들과 하나의 목표를 이루기 위한 여정을 시작하세요.
-            </FormTitle>
-            <NeuInput
-              value={name}
-              onChange={(e: any) => setName(e.target.value)}
-              placeholder="방 이름"
-            />
-            <NeuInput
-              value={goal}
-              onChange={(e: any) => setGoal(e.target.value)}
-              placeholder="목표"
-            />
-            <NeuButton
-              text="방 만들기"
-              onClick={onClickCreate}
-            />
-            <DummyDiv />
-          </Form>
-        </CardContent>
-      </NeuCard>
-      <CustomFooter />
+      <Navbar
+        title="목표방 만들기"
+        showBack={true}
+      />
+        <IllustContainer>
+          <IllustImage src={formImage} />
+          <IllustText>
+            Spes™로 이룰 수 있습니다.<br />
+            어떤 목표든 말이예요.
+          </IllustText>
+        </IllustContainer>
+        <Form>
+          <Input
+            label="방 이름"
+            value={name}
+            onChange={(e: any) => setName(e.target.value)}
+            placeholder="방에 이름을 지어주세요."
+          />
+          <Input
+            label="목표"
+            value={goal}
+            onChange={(e: any) => setGoal(e.target.value)}
+            placeholder="여러분의 목표는 무엇인가요?"
+          />
+          <Input
+            label="만료 기한"
+            value={finish}
+            onChange={(e: any) => setFinish(e.target.value)}
+            type="date"
+          />
+          <SubmitButton>
+            방 생성하기
+          </SubmitButton>
+        </Form>
+      <Footer
+        showLogout={true}
+      />
     </CreatePage>
-    </div>
   );
 };
 
 export default Create;
 
 const CreatePage = styled(Page)`
-  width: 100%;
-  height: 100%;
+  height: calc(100vh + 2rem);
+`;
+
+const IllustContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem 0;
-
-  & > div:not(.header) {
-    width: fit-content !important;
-    height: fit-content !important;
-  }
-
+  margin-top: 50px;
+  cursor: pointer;
 `;
 
-const DummyDiv = styled.div`
-  display: none;
+const IllustImage = styled.img`
+  width: 215px;
 `;
 
-const CustomFooter = styled(Footer)`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right:0;
+const IllustText = styled(Text)`
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 1rem 0;
+  text-align: center;
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+const SubmitButton = styled(Button)`
+  margin: 1rem 0;
 `;

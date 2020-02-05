@@ -2,6 +2,7 @@ import * as React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components';
 import Text from '../atoms/Text';
+import TextButton from '../atoms/TextButton';
 
 interface IFooter extends RouteComponentProps {
   className?: string;
@@ -56,14 +57,4 @@ const Content = styled.div`
 const CopyrightText = styled(Text)`
   font-size: 0.85rem;
   color: rgba(27, 41, 68, 0.5);
-`;
-
-const TextButton = styled(Text)`
-  font-size: 0.85rem;
-  cursor: pointer;
-  color: rgba(27, 41, 68, 0.7);
-
-  &:hover {
-    color: rgba(27, 41, 68, 0.8);
-  }
 `;

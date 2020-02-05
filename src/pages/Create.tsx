@@ -17,7 +17,7 @@ import { toast } from 'react-toastify';
 const Create: React.FC = () => {
   const [name, setName] = useState<string>('');
   const [goal, setGoal] = useState<string>('');
-  const [finish, setFinish] = useState<string>('');
+  const [finish, setFinish] = useState<string>('2039-03-04');
   const [continuous, setContinuous] = useState<boolean>(true);
 
   const onClickCreate = async (event: any) => {
@@ -30,9 +30,10 @@ const Create: React.FC = () => {
     const payload = {
       title: name,
       goal,
-      finish,
+      finish: Number(new Date(finish)),
       continuous,
     };
+    console.log(payload);
 
     try {
       const { data: { _id: roomID } } = await axios.post('/api/room', payload);

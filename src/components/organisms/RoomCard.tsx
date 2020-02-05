@@ -17,10 +17,12 @@ export const RoomCard: React.FC<RoomCardProps> = ({
 }) => {
   const onClickCard = () => history.push('/room');
 
+  const { username, profile = 'http://via.placeholder.com/150.png' } = author;
+
   return (
     <Container onClick={onClickCard}>
         <Image
-          src={author.profile}
+          src={profile}
           draggable="false"
         />
         <Info>
@@ -32,7 +34,7 @@ export const RoomCard: React.FC<RoomCardProps> = ({
               개설한 사람
             </Field>
             <Value>
-              {author.username}
+              {username}
             </Value>
           </Row>
           <Row>

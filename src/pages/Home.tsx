@@ -47,7 +47,14 @@ export const Home: React.FC<RouteComponentProps> = ({ history }) => {
           const token = localStorage.getItem('token') as string;
           axios.defaults.headers.common['Authorization'] = token;
           const { data: { rooms } } = await axios.get('/api/room');
-          setRooms(rooms);
+          setRooms(rooms.map((room: any) => {
+            const author = room.users[0];
+            return {
+              ...room,
+              author,
+            }
+          }));
+          console.log(rooms);
         } catch (error) {
           console.log(error);
           toast('데이터를 불러오는 데 실패했습니다.');

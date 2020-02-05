@@ -7,6 +7,8 @@ import Footer from '../components/organisms/Footer';
 import { NeuButton, NeuInput } from 'neumorphic-ui';
 import PostCard from '../components/organisms/PostCard';
 import Navbar from '../components/molecules/Navbar';
+import Button from '../components/atoms/Button';
+import Input from '../components/molecules/Input';
 
 const Room: React.FC = () => {
   const [image, setImage] = useState<string>('http://via.placeholder.com/150.png');
@@ -46,18 +48,26 @@ const Room: React.FC = () => {
             text="글쓰기"
           />
           <FormWrap>
-            <Image src={image} />
+            <ImageWrap>
+              <Label>이미지 미리보기</Label>
+              <Image src={image} />
+            </ImageWrap>
             <Form>
-              <input type="file" onChange={onChangeImage} />
-              <NeuInput
+              <Input
+                label="오늘의 이룸"
                 type="text"
                 placeholder="오늘은 어떻게 노력했나요?"
               />
-              <NeuButton
-                text="작성하기"
+              <Input
+                label="증거 사진 업로드"
+                type="file"
+                onChange={onChangeImage}
               />
             </Form>
           </FormWrap>
+          <Button>
+            작성하기
+          </Button>
         </Section>
         <Section>
           <FittedHashTitle
@@ -79,6 +89,7 @@ export default Room;
 const PageContent = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 const RoomInfo = styled.div`
@@ -87,12 +98,15 @@ const RoomInfo = styled.div`
 `;
 
 const RoomTitle = styled(Text)`
-  font-size: 2rem;
+  font-size: 1.5rem;
+  letter-spacing: -0.5px;
   margin-left: 0;
 `;
 
 const RoomDesc = styled(Text)`
   color: #5b6470;
+  font-size: 16px;
+  font-weight: 600;
 `;
 
 const Section = styled.section`
@@ -100,14 +114,14 @@ const Section = styled.section`
   flex-direction: column;
   width: 100%;
 
+  margin-bottom: 1.8rem;
   &:not(:first-child) {
-    margin: 2.5rem 0;
   }
 `;
 
 const SectionContent = styled(Text)`
   color: #5b6470;
-  font-weight: normal;
+  font-weight: 600;
 `;
 
 const FittedHashTitle = styled(HashTitle)`
@@ -117,12 +131,18 @@ const FittedHashTitle = styled(HashTitle)`
 const FormWrap = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+`;
+
+const ImageWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 `;
 
 const Image = styled.img`
   width: 120px;
-  height: 120px;
+  height: 100%;
   object-fit: cover;
   margin-right: 1rem;
   border: 3px solid #E5E9F1;
@@ -132,5 +152,12 @@ const Image = styled.img`
   border-radius: 30px;
 `;
 
+const Label = styled(Text)`
+  font-size: 13px;
+  margin-bottom: 2.5px;
+  z-index: 999;
+`;
+
 const Form = styled.form`
+  width: 100%;
 `;

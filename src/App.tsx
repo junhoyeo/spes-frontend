@@ -35,7 +35,7 @@ const App = () => {
         <BrowserRouter basename="/">
           <Router />
         </BrowserRouter>
-      <ToastContainer position={toast.POSITION.TOP_RIGHT} />
+      <ToastContainer position={toast.POSITION.TOP_CENTER} />
     </>
   );
 }

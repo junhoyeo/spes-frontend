@@ -46,4 +46,5 @@ const Section = styled.div`
   display: flex;
   flex-direction: column;
   padding-bottom: 1rem;
+  width: 100%;
 `;

@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { NeuButton, NeuCard, NeuInput } from 'neumorphic-ui';
 import BrandCard from '../components/organisms/BrandCard';
-import { CardContent, Section, Form, FormTitle } from '../components/atoms/Form';
 // import { FooterForLink } from '../components/organisms/Footer';
 
 import { Page } from '../components/atoms/Page';
@@ -11,7 +10,7 @@ import Navbar from '../components/molecules/Navbar';
 const Link: React.FC = () => {
   return (
     <Page>
-      <Navbar
+      {/* <Navbar
         title="목표방 입장하기"
         hideMeta={true}
       />
@@ -37,7 +36,7 @@ const Link: React.FC = () => {
             <NeuButton text="계정 생성하러 가기" />
           </Form>
         </CardContent>
-      </NeuCard>
+      </NeuCard> */}
     </Page>
   );
 };

@@ -87,7 +87,9 @@ const Rank: React.FC = () => {
           );
         })}
       </Section>
-      <Footer />
+      <Footer
+        showLogout={true}
+      />
     </Page>
   );
 };

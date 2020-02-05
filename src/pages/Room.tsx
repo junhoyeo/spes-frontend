@@ -9,9 +9,27 @@ import PostCard from '../components/organisms/PostCard';
 import Navbar from '../components/molecules/Navbar';
 import Button from '../components/atoms/Button';
 import Input from '../components/molecules/Input';
+import { IPost } from '../models/post';
+
+const examplePosts: IPost[] = [
+  {
+    image: 'https://trendy-resume.now.sh/static/products/wand.png',
+    _id: '111',
+    author: {
+      profile: 'https://github.com/junhoyeo.png',
+      username: '여준호',
+    },
+    created: Date.now(),
+    closed: false,
+    agreed: true,
+    agreedUsers: ['', '', '', '', ''],
+    content: '진짜 코딩 했어요, 오늘도!',
+  },
+];
 
 const Room: React.FC = () => {
   const [image, setImage] = useState<string>('http://via.placeholder.com/150.png');
+  const [posts, setPosts] = useState<IPost[]>(examplePosts);
 
   const onChangeImage = (event: any) =>
     setImage(URL.createObjectURL(event.target.files[0]));
@@ -75,7 +93,22 @@ const Room: React.FC = () => {
             text="목록"
           />
           <SectionContent>
-            {/* <PostCard /> */}
+            {posts.map((post, idx) => {
+              const { _id, author, created, closed, agreed, agreedUsers, content, image } = post;
+              return (
+                <PostCard
+                  key={`post=${idx}`}
+                  _id={_id}
+                  author={author}
+                  created={created}
+                  closed={closed}
+                  agreed={agreed}
+                  agreedUsers={agreedUsers}
+                  content={content}
+                  image={image}
+                />
+              );
+            })}
           </SectionContent>
         </Section>
       </PageContent>

@@ -2,25 +2,42 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Text } from '../atoms/Text';
 import { NeuCard } from 'neumorphic-ui';
+import { IPost } from '../../types/typings';
 
-const PostCard: React.FC = () => {
+const PostCard: React.FC<IPost> = ({
+  name,
+  text,
+  image,
+  vote,
+  currentVote,
+}) => {
+  const [votesToReal, votesToFake] = vote;
+  const onClickVoteToReal = () => {};
+  const onClickVoteToFake = () => {};
+
   return (
     <Container>
       <NeuCard>
-        <Image src="https://github.com/junhoyeo.png" />
+        <Image
+          src={image}
+        />
         <Meta>
-          <Name>여준호</Name>
-          <ContentText>ㅇㅇㅇㅇ</ContentText>
+          <Name>
+            {name}
+          </Name>
+          <ContentText>
+            {text}
+          </ContentText>
         </Meta>
         <Vote>
-          <Item>
-            찐이예요 0
+          <Item onClick={() => onClickVoteToReal}>
+            찐이예요 {votesToReal}
           <i className="fas fa-thumbs-up" />
           </Item>
-          <Item>
+          <Item onClick={() => onClickVoteToFake}>
             <i className="fas fa-thumbs-down" />
-            구라예요 1
-        </Item>
+            구라예요 {votesToFake}
+          </Item>
         </Vote>
       </NeuCard>
     </Container>
@@ -36,6 +53,7 @@ const Container = styled.div`
     width: 100% !important;
     height: fit-content !important;
     display: flex;
+
   }
 `;
 

@@ -6,16 +6,31 @@ import Footer from '../components/organisms/Footer';
 import RankCard from '../components/organisms/RankCard';
 import Header from '../components/organisms/Header';
 
+const ranks = Array(8).fill({
+  username: 'junhoyeo',
+  profile: 'http://via.placeholder.com/150.png',
+  roomCount: 5,
+  points: 1500,
+});
+
 const Rank: React.FC = () => {
   return (
     <RankPage>
       <Header title="달성률 랭킹" />
       <Section>
-        <RankCard />
-        <RankCard />
-        <RankCard />
-        <RankCard />
-        <RankCard />
+        {ranks.map((user, idx) => {
+          const { username, profile, roomCount, points } = user;
+          return (
+            <RankCard
+              key={`rank-${idx}`}
+              profile={profile}
+              name={username}
+              roomCount={roomCount}
+              rankNumber={idx + 1}
+              points={points}
+            />
+          );
+        })}
       </Section>
       <Footer />
     </RankPage>

@@ -4,33 +4,47 @@ import styled, { css } from 'styled-components';
 import { Text } from '../atoms/Text';
 import { NeuCard } from 'neumorphic-ui';
 
-export const RankCard: React.FC = () => {
+type RankCardProps = {
+  name: string;
+  roomCount: number;
+  rankNumber: number;
+  profile: string;
+  points: number;
+};
+
+export const RankCard: React.FC<RankCardProps> = ({
+  name,
+  rankNumber,
+  roomCount,
+  profile,
+  points,
+}) => {
   return (
     <Container>
       <NeuCard>
         <ContentWrapper>
           <UserInfo>
             <Image
-              src="https://avatars0.githubusercontent.com/u/32605822?s=200"
+              src={profile}
               draggable="false"
             >
               <RankNumber
                 className="medal"
               >
-                1
+                {rankNumber.toLocaleString('ko')}
               </RankNumber>
             </Image>
             <UserMeta>
               <Name>
-                여준호
+                {name}
               </Name>
               <RoomNumber>
-                가입된 방 5개
+                가입된 방 {roomCount.toLocaleString('ko')}개
               </RoomNumber>
             </UserMeta>
           </UserInfo>
           <PointNumber>
-            1,500p
+            {`${points.toLocaleString('ko')}p`}
           </PointNumber>
         </ContentWrapper>
       </NeuCard>

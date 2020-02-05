@@ -10,6 +10,9 @@ import Footer from '../components/organisms/Footer';
 import Input from '../components/molecules/Input';
 import Button from '../components/atoms/Button';
 import Text from '../components/atoms/Text';
+import SuggestJoin from '../components/templates/SuggestJoin';
+
+import passwordImage from '../assets/illusts/password.svg';
 
 const Login: React.FC<RouteComponentProps> = ({ history }) => {
   const [modeForJoin, setModeForJoin] = useState<boolean>(false);
@@ -71,19 +74,23 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
   return (
     <Page>
       <Header>
-        <BrandCard
-          title={
-            <Title>
-              새해 소망 이루기,<br />
-              올해는 Spes™와 함께
-            </Title>
+        {((showJoin: boolean) => {
+          if (showJoin) {
+            return <SuggestJoin />;
           }
-        />
+          return (
+            <BrandCard
+              title={
+                <Title>
+                  새해 소망 이루기,<br />
+                  올해는 Spes™와 함께
+                </Title>
+              }
+            />
+          );
+        })(modeForJoin)}
       </Header>
       <Form>
-          {/* <FormTitle>
-            { modeForJoin ? '빠르게 회원가입 진행.' : '쉽고 간단하게 로그인.' }
-          </FormTitle> */}
           <Input
             label="이메일"
             type="email"
@@ -155,6 +162,7 @@ const Header = styled.header`
 
 const Form = styled.form`
   width: 100%;
+  margin-bottom: 2rem;
 `;
 
 const Title = styled(Text)`

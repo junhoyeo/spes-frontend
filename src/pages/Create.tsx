@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
 import { Page } from '../components/atoms/Page';
 import Footer from '../components/organisms/Footer';
 import Navbar from '../components/molecules/Navbar';
@@ -8,13 +9,16 @@ import Input from '../components/molecules/Input';
 
 import formImage from '../assets/illusts/form.svg';
 import Button from '../components/atoms/Button';
+import Switch from '../components/molecules/Switch';
 
 const Create: React.FC = () => {
   const [name, setName] = useState<string>('');
   const [goal, setGoal] = useState<string>('');
   const [finish, setFinish] = useState<string>('');
+  const [continuous, setContinuous] = useState<boolean>(true);
 
-  const onClickCreate = () => {
+  const onClickCreate = (event: any) => {
+    event.preventDefault();
     const userJSON = localStorage.getItem('user') as string || '{}';
     const { id: userID = '' } = JSON.parse(userJSON);
     const room = {
@@ -28,7 +32,9 @@ const Create: React.FC = () => {
   };
 
   return (
-    <CreatePage>
+    <CreatePage
+      continuous={continuous}
+    >
       <Navbar
         title="목표방 만들기"
         showBack={true}
@@ -53,13 +59,22 @@ const Create: React.FC = () => {
             onChange={(e: any) => setGoal(e.target.value)}
             placeholder="여러분의 목표는 무엇인가요?"
           />
-          <Input
-            label="만료 기한"
-            value={finish}
-            onChange={(e: any) => setFinish(e.target.value)}
-            type="date"
+          <Switch
+            label="반복되는 목표인가요?"
+            checked={continuous}
+            onChangeChecked={setContinuous}
           />
-          <SubmitButton>
+          {continuous ||
+            <Input
+              label="만료 기한"
+              value={finish}
+              onChange={(e: any) => setFinish(e.target.value)}
+              type="date"
+            />
+          }
+          <SubmitButton
+            onClick={onClickCreate}
+          >
             방 생성하기
           </SubmitButton>
         </Form>
@@ -72,8 +87,20 @@ const Create: React.FC = () => {
 
 export default Create;
 
-const CreatePage = styled(Page)`
-  height: calc(100vh + 2rem);
+type CreatePageProps = {
+  continuous?: boolean;
+};
+
+const CreatePage = styled(Page)<CreatePageProps>`
+  height: 100vh;
+
+  ${({ continuous = false }) => !continuous && css`
+    height: calc(100vh + 5.2rem);
+  `};
+
+  @media (max-height: 790px) {
+    height: 150vh;
+  }
 `;
 
 const IllustContainer = styled.div`

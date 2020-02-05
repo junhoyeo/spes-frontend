@@ -11,6 +11,7 @@ import CreateCard from '../components/organisms/CreateCard';
 import PageTitle from '../components/molecules/PageTitle';
 import HashTitle from '../components/molecules/HashTitle';
 import Navbar from '../components/molecules/Navbar';
+import SuggestNew from '../components/templates/SuggestNew';
 
 export const Home: React.FC<RouteComponentProps> = ({ history }) => {
   useEffect(
@@ -32,14 +33,15 @@ export const Home: React.FC<RouteComponentProps> = ({ history }) => {
             id="created"
             text="내 목표방"
           />
+          <SuggestNew rooms={[]} />
           <Cards>
             {/* <RoomCard />
             <RoomCard />
             <RoomCard />
             <RoomCard />
             <RoomCard />
-            <RoomCard /> */}
-            <CreateCard />
+            <RoomCard />
+            <CreateCard /> */}
           </Cards>
         </Section>
       </Content>
@@ -53,19 +55,14 @@ export default withRouter(Home);
 const Content = styled.main`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 const Section = styled.section`
-  margin-bottom: 3rem;
-
-  &:last-child {
-    margin-bottom: 5rem;
-  }
+  width: 100%;
 `;
 
 const Cards = styled.div`
-  display: grid;
-  grid-column-gap: 1rem;
-  grid-row-gap: 1rem;
-  grid-template-columns: repeat(auto-fill,minmax(252px, 1fr));
+  display: flex;
+  flex-direction: column;
 `;

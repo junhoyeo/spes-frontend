@@ -7,6 +7,7 @@ export const Page = styled.main`
   align-items: center;
   background-color: white;
   padding: 2rem 1.8rem;
+  position: relative;
 
   @media (max-width: 500px) {
     width: 100%;

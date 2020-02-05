@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components';
-import { NeuButton, NeuCard } from 'neumorphic-ui';
+import Text from '../atoms/Text';
 
 interface IFooter extends RouteComponentProps {
   className?: string;
@@ -16,63 +16,33 @@ const Footer: React.FC<IFooter> = ({ history, className = '' }) => {
 
   return (
     <Container className={className}>
-      <NeuCard>
-        <ButtonWrapper>
-          <NeuButton
-            text="로그아웃"
-            onClick={onClickLogout}
-          />
-        </ButtonWrapper>
-      </NeuCard>
+      <Content>
+        <Text>© 2020 Spes. All rights reserved.</Text>
+      </Content>
     </Container>
   );
 };
-
-const FooterForLinkWithoutRouter: React.FC<IFooter> = ({ history, className = '' }) => {
-  const onClickHome = () => history.push('/');
-
-  return (
-    <Container className={className} style={{position: 'absolute', bottom: 0}}>
-      <NeuCard>
-        <ButtonWrapper>
-          <NeuButton
-            text="Spes™ 알아보기"
-            onClick={onClickHome}
-          />
-        </ButtonWrapper>
-      </NeuCard>
-    </Container>
-  );
-};
-
-export const FooterForLink = withRouter(FooterForLinkWithoutRouter);
 
 export default withRouter(Footer);
 
 const Container = styled.footer`
-  height: 10rem;
   width: 100%;
-
-  & > div {
-    height: 100% !important;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 0 !important;
-  }
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(224, 229, 236);
 `;
 
-const ButtonWrapper = styled.div`
+const Content = styled.div`
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
 
-  & > div {
-    width: 256px !important;
-    border: 3px solid rgb(224, 229, 236) !important;
-    transition: border-color 0.3s ease-in-out;
-
-    &:hover {
-      border: 3px solid rgba(255, 255, 255, 0.4) !important;
-    }
+  span {
+    font-size: 0.85rem;
+    color: rgba(27, 41, 68, 0.5);
   }
 `;

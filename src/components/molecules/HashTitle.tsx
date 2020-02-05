@@ -31,8 +31,8 @@ const Title = styled(Text)`
   cursor: pointer;
   color: rgba(27, 41, 68, 0.5);
   font-weight: 900;
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  margin: 1rem 0;
 
   i.fa-paperclip {
     margin-right: 0.8rem;

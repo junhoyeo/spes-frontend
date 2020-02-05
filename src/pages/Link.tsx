@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { NeuButton, NeuCard, NeuInput } from 'neumorphic-ui';
 import BrandCard from '../components/organisms/BrandCard';
 import { CardContent, Section, Form, FormTitle } from '../components/atoms/Form';
-import { FooterForLink } from '../components/organisms/Footer';
+// import { FooterForLink } from '../components/organisms/Footer';
 
 import { Page } from '../components/atoms/Page';
 import Header from '../components/organisms/Header';
@@ -41,7 +41,7 @@ const Link: React.FC = () => {
         </CardContent>
       </NeuCard>
     </LinkPage>
-    <FooterForLink />
+    {/* <FooterForLink /> */}
     </div>
   );
 };

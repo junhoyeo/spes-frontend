@@ -6,6 +6,7 @@ export interface IRoomSummary {
   author: IUser;
   users: IUser[];
   title: string;
+  closed?: boolean;
 }
 
 export interface IRoomCreation {

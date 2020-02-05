@@ -57,7 +57,6 @@ const Label = styled.div`
   padding: 0rem 0.65rem;
   background-color: white;
   box-shadow: rgba(163, 177, 198, 0.6) 3px 3px 9px;
-  cursor: pointer;
   margin-bottom: 0.5rem;
 
   i {
@@ -71,6 +70,7 @@ const Label = styled.div`
   }
 
   &:first-child {
+    cursor: pointer;
     background-color: #ffe066;
     box-shadow: rgba(255, 224, 102, 0.6) 3px 3px 9px;
 

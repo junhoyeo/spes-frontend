@@ -14,4 +14,5 @@ export interface IPost extends IVote, IPostCreation {
   _id: string;
   author: IUser;
   created: number;
+  closed: boolean;
 }

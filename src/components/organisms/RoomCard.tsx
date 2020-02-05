@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import { NeuCard } from 'neumorphic-ui';
 import Text from '../atoms/Text';
 
 import { RouteComponentProps, withRouter } from 'react-router-dom';
@@ -20,7 +19,6 @@ export const RoomCard: React.FC<RoomCardProps> = ({
 
   return (
     <Container onClick={onClickCard}>
-      <NeuCard>
         <Image
           src={author.profile}
           draggable="false"
@@ -46,7 +44,6 @@ export const RoomCard: React.FC<RoomCardProps> = ({
             </Value>
           </Row>
         </Info>
-      </NeuCard>
     </Container>
   );
 };
@@ -56,75 +53,49 @@ export default withRouter(RoomCard);
 const Container = styled.div`
   cursor: pointer;
   display: flex;
-  flex-grow: 1;
-  flex-basis: 21%;
+  width: 100%;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  background: linear-gradient(145deg,rgb(224,229,236),rgb(232,238,247));
+  box-shadow:
+    30px 30px 40px rgba(163,177,198,0.3),
+    -30px -30px 40px rgba(163,177,198,0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  overflow:hidden;
 
-  /* for overriding styles in neumorphic-ui */
-  & > div {
-    width: 100% !important;
-    height: 312px !important;
-    border: 3px solid rgba(255, 255, 255, 0.4);
-    background: linear-gradient(145deg,rgb(224,229,236),rgb(232,238,247));
-    box-shadow:
-      30px 30px 40px rgba(163,177,198,0.3),
-      -30px -30px 40px rgba(163,177,198,0.2) !important;
-    border-radius: 30px !important;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    position: relative;
-
-    &:hover {
-      background: rgb(163,177,198);
-      border-color: rgba(255, 255, 255, 0.8);
-    }
-  }
-
-  @media (max-width: 580px) {
-    width: 100%;
-    flex-basis: unset;
-
-    & > div {
-      width: 100% !important;
-      height: fit-content !important;
-    }
+  &:hover {
+    background: rgb(163,177,198, 0.3);
+    border-color: rgba(255, 255, 255, 0.6);
   }
 `;
 
 const Image = styled.img`
   width: 100px;
+  min-width: 100px;
   height: 100px;
   border: 3px solid rgba(255, 255, 255, 0.1);
   box-shadow:
     15px 15px 16px rgba(163,177,198,0.3),
     -15px -15px 16px rgba(163,177,198,0.2);
   border-radius: 30px;
+  margin-right: 1rem;
 `;
 
 const Info = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  position: absolute;
-  bottom: 20px;
-  left: 0;
-  right: 0;
-  padding: 0 20px;
-
-  @media (max-width: 580px) {
-    position: unset;
-    bottom: unset;
-    margin-top: 1rem;
-  }
 `;
 
 const Title = styled(Text)`
   color: #1f293d;
   text-align: start;
   font-weight: 900;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   line-height: 1.5;
   margin-bottom: 0.5rem;
+  word-break: keep-all;
 `;
 
 const Row = styled.div`

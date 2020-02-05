@@ -6,12 +6,38 @@ import Footer from '../components/organisms/Footer';
 import RankCard from '../components/organisms/RankCard';
 import Navbar from '../components/molecules/Navbar';
 
-const ranks = Array(8).fill({
-  username: 'junhoyeo',
-  profile: 'http://via.placeholder.com/150.png',
-  achievement: [15, 18],
-  points: 1500,
-});
+const ranks = [
+  {
+    username: '여준호',
+    profile: 'https://avatars0.githubusercontent.com/u/32605822?s=460&v=4',
+    achievement: [15, 18],
+    points: 1500,
+  },
+  {
+    username: '민승현',
+    profile: 'https://avatars3.githubusercontent.com/u/44062683?s=460&v=4',
+    achievement: [14, 18],
+    points: 1000,
+  },
+  {
+    username: '손지민',
+    profile: 'https://avatars2.githubusercontent.com/u/47082043?s=460&v=4',
+    achievement: [1, 18],
+    points: 200,
+  },
+  {
+    username: '고슷흐',
+    profile: 'https://avatars0.githubusercontent.com/u/10137?s=460&v=4',
+    achievement: [0, 18],
+    points: 100,
+  },
+  {
+    username: '고슷흐',
+    profile: 'https://avatars0.githubusercontent.com/u/10137?s=460&v=4',
+    achievement: [0, 18],
+    points: 100,
+  }
+];
 
 const Rank: React.FC = () => {
   return (
@@ -28,6 +54,7 @@ const Rank: React.FC = () => {
               key={`rank-${idx}`}
               profile={profile}
               name={username}
+              // @ts-ignore
               achievement={achievement}
               rankNumber={idx + 1}
               points={points}

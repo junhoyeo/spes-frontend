@@ -36,12 +36,12 @@ export const RankCard: React.FC<RankCardProps> = ({
           <Name>
             {name}
           </Name>
-          <Achievements>
-            달성률 <span>{percent}%</span>
-          </Achievements>
           <PointNumber>
             {`${points.toLocaleString('ko')}p`}
           </PointNumber>
+          <Achievements>
+            달성률 <span>{percent}%</span>
+          </Achievements>
         </UserInfo>
       </ContentWrapper>
     </Container>
@@ -154,16 +154,10 @@ const Name = styled(Text)`
 `;
 
 const Achievements = styled(Text)`
-  font-size: 14.5px;
-  color: #78879A;
-
-  span {
-    color: #1f293d;
-  }
+  color: #1B2944;
+  font-size: 22px;
 `;
 
 const PointNumber = styled(Text)`
-  margin-right: 1rem;
-  font-size: 22px;
-  color: #1B2944;
+  font-size: 14.5px;
 `;

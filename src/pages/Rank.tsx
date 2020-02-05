@@ -70,11 +70,11 @@ const Rank: React.FC = () => {
       />
       <Section>
         {ranks.map((user, idx) => {
-          const { username, profile = 'http://via.placeholder.com/150.png', achievement, points = 1500 } = user;
+          const { username, profile, achievement, points = 1500 } = user;
           return (
             <RankCard
               key={`rank-${idx}`}
-              profile={profile}
+              profile={profile ? profile : 'http://via.placeholder.com/150.png'}
               name={username}
               // @ts-ignore
               achievement={achievement}

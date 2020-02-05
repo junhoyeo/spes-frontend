@@ -15,14 +15,14 @@ export const RoomCard: React.FC<RoomCardProps> = ({
   title,
   history,
 }) => {
-  const onClickCard = () => history.push('/room');
+  const onClickCard = () => history.push(`/room/${_id}`);
 
-  const { username, profile = 'http://via.placeholder.com/150.png' } = author;
+  const { username, profile } = author;
 
   return (
     <Container onClick={onClickCard}>
         <Image
-          src={profile}
+          src={profile ? profile : 'http://via.placeholder.com/150.png' }
           draggable="false"
         />
         <Info>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { withRouter, RouteComponentProps } from "react-router";
 import styled from 'styled-components';
 import { Page } from '../components/atoms/Page';
 import { Text } from '../components/atoms/Text';
@@ -9,6 +10,9 @@ import Navbar from '../components/molecules/Navbar';
 import Button from '../components/atoms/Button';
 import Input from '../components/molecules/Input';
 import { IPost } from '../models/post';
+
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const examplePosts: IPost[] = [
   {
@@ -26,12 +30,33 @@ const examplePosts: IPost[] = [
   },
 ];
 
-const Room: React.FC = () => {
+interface MatchParams {
+  roomID: string;
+}
+
+const Room: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
   const [image, setImage] = useState<string>('http://via.placeholder.com/150.png');
   const [posts, setPosts] = useState<IPost[]>(examplePosts);
+  const [content, setContent] = useState<string>('');
 
   const onChangeImage = (event: any) =>
     setImage(URL.createObjectURL(event.target.files[0]));
+
+  const onClickCreatePost = async (event: any) => {
+    event.preventDefault();
+    axios.defaults.baseURL = 'http://spes-psbxv.run.goorm.io/';
+    const token = localStorage.getItem('token') as string;
+    axios.defaults.headers.common['Authorization'] = token;
+
+    try {
+      const { roomID } = match.params;
+      await axios.post(`/api/post/${roomID}`, { content });
+      toast('생성 성공!');
+    } catch (error) {
+      console.log(error);
+      toast('목표방 생성에 실패했습니다.');
+    }
+  }
 
   return (
     <Page>
@@ -74,6 +99,8 @@ const Room: React.FC = () => {
                 label="오늘의 이룸"
                 type="text"
                 placeholder="오늘은 어떻게 노력했나요?"
+                value={content}
+                onChange={(e: any) => setContent(e.target.value)}
               />
               <Input
                 label="증거 사진 업로드"
@@ -82,7 +109,7 @@ const Room: React.FC = () => {
               />
             </Form>
           </FormWrap>
-          <Button>
+          <Button onClick={onClickCreatePost}>
             작성하기
           </Button>
         </Section>

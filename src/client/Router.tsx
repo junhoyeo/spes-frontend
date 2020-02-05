@@ -17,7 +17,7 @@ export const Router: React.FC = () => {
       <Route path="/rank" component={Rank} />
       <Route path="/create" component={Create} />
       <Route path="/link" component={Link} />
-      <Route path="/room" component={Room} />
+      <Route path="/room/:roomID" component={Room} />
     </Container>
   );
 };

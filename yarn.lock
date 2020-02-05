@@ -6723,11 +6723,6 @@ neo-async@^2.5.0, neo-async@^2.6.1:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
   integrity sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
 
-neumorphic-ui@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/neumorphic-ui/-/neumorphic-ui-1.1.0.tgz#772141c63e518311d368191b5bce3e2be8c71af8"
-  integrity sha512-Yz/pgTw8srTxGp/ZOcryUx33X++JO4MoU8NUINtshAm2MbNQEfYqjmiWV5+TIAgDGsPUhRagzTDMEAVA3M1txA==
-
 next-tick@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"

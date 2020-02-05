@@ -9,7 +9,7 @@ import Navbar from '../components/molecules/Navbar';
 const ranks = Array(8).fill({
   username: 'junhoyeo',
   profile: 'http://via.placeholder.com/150.png',
-  roomCount: 5,
+  achievement: [15, 18],
   points: 1500,
 });
 
@@ -22,13 +22,13 @@ const Rank: React.FC = () => {
       />
       <Section>
         {ranks.map((user, idx) => {
-          const { username, profile, roomCount, points } = user;
+          const { username, profile, achievement, points } = user;
           return (
             <RankCard
               key={`rank-${idx}`}
               profile={profile}
               name={username}
-              roomCount={roomCount}
+              achievement={achievement}
               rankNumber={idx + 1}
               points={points}
             />
@@ -45,6 +45,6 @@ export default Rank;
 const Section = styled.div`
   display: flex;
   flex-direction: column;
-  padding-bottom: 1rem;
+  padding: 2rem 0;
   width: 100%;
 `;

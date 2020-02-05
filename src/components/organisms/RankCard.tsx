@@ -2,11 +2,10 @@ import * as React from 'react';
 import styled, { css } from 'styled-components';
 
 import { Text } from '../atoms/Text';
-import { NeuCard } from 'neumorphic-ui';
 
 type RankCardProps = {
   name: string;
-  roomCount: number;
+  achievement: [number, number];
   rankNumber: number;
   profile: string;
   points: number;
@@ -15,39 +14,36 @@ type RankCardProps = {
 export const RankCard: React.FC<RankCardProps> = ({
   name,
   rankNumber,
-  roomCount,
+  achievement,
   profile,
   points,
 }) => {
+  const percent = (achievement[0] / achievement[1] * 100).toFixed(2);
   return (
     <Container>
-      <NeuCard>
-        <ContentWrapper>
-          <UserInfo>
-            <Image
-              src={profile}
-              draggable="false"
-            >
-              <RankNumber
-                className="medal"
-              >
-                {rankNumber.toLocaleString('ko')}
-              </RankNumber>
-            </Image>
-            <UserMeta>
-              <Name>
-                {name}
-              </Name>
-              <RoomNumber>
-                가입된 방 {roomCount.toLocaleString('ko')}개
-              </RoomNumber>
-            </UserMeta>
-          </UserInfo>
+      <ContentWrapper>
+        <Image
+          src={profile}
+          draggable="false"
+        >
+          <RankNumber
+            className="medal"
+          >
+            {rankNumber.toLocaleString('ko')}
+          </RankNumber>
+        </Image>
+        <UserInfo>
+          <Name>
+            {name}
+          </Name>
+          <Achievements>
+            달성률 <span>{percent}%</span>
+          </Achievements>
           <PointNumber>
             {`${points.toLocaleString('ko')}p`}
           </PointNumber>
-        </ContentWrapper>
-      </NeuCard>
+        </UserInfo>
+      </ContentWrapper>
     </Container>
   );
 };
@@ -55,20 +51,19 @@ export const RankCard: React.FC<RankCardProps> = ({
 export default RankCard;
 
 const Container = styled.div`
-  width: 100%;
+  cursor: pointer;
   display: flex;
-  margin-bottom: 1rem;
+  width: 100%;
   border: 3px solid rgba(255, 255, 255, 0.4);
   background: linear-gradient(145deg,rgb(224,229,236),rgb(232,238,247));
   box-shadow:
     30px 30px 40px rgba(163,177,198,0.3),
-    -30px -30px 40px rgba(163,177,198,0.2) !important;
-  border-radius: 30px !important;
-
-  & > div {
-    height: fit-content !important;
-    padding: 1rem !important;
-  }
+    -30px -30px 40px rgba(163,177,198,0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  overflow:hidden;
+  margin-bottom: 1rem;
 
   &:first-child {
 
@@ -106,7 +101,9 @@ const ContentWrapper = styled.div`
 
 const UserInfo = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 1rem;
 `;
 
 type ImageProps = {
@@ -114,8 +111,8 @@ type ImageProps = {
 };
 
 const Image = styled.div<ImageProps>`
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   position: relative;
   background-size: contain;
   border: 3px solid #E5E9F1;
@@ -151,25 +148,22 @@ const RankNumber = styled(Text)`
   text-shadow: 1px 2px 32px rgba(0, 0, 0, 0.35);
 `;
 
-const UserMeta = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-left: 1rem;
-`;
-
 const Name = styled(Text)`
-  font-size: 1.8rem;
+  font-size: 20px;
   color: #5b6470;
 `;
 
-const RoomNumber = styled(Text)`
-  font-size: 1.5rem;
+const Achievements = styled(Text)`
+  font-size: 14.5px;
   color: #78879A;
+
+  span {
+    color: #1f293d;
+  }
 `;
 
 const PointNumber = styled(Text)`
   margin-right: 1rem;
-  font-size: 2rem;
+  font-size: 22px;
   color: #1B2944;
 `;

@@ -4,7 +4,6 @@ import { Page } from '../components/atoms/Page';
 import { Text } from '../components/atoms/Text';
 import HashTitle from '../components/molecules/HashTitle';
 import Footer from '../components/organisms/Footer';
-import { NeuButton, NeuInput } from 'neumorphic-ui';
 import PostCard from '../components/organisms/PostCard';
 import Navbar from '../components/molecules/Navbar';
 import Button from '../components/atoms/Button';

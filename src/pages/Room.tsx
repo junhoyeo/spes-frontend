@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withRouter, RouteComponentProps } from "react-router";
 import styled from 'styled-components';
 import { Page } from '../components/atoms/Page';
@@ -38,6 +38,38 @@ const Room: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
   const [image, setImage] = useState<string>('http://via.placeholder.com/150.png');
   const [posts, setPosts] = useState<IPost[]>(examplePosts);
   const [content, setContent] = useState<string>('');
+  const [room, setRoom] = useState<any>({title:'', goal:'', posts:[], users:[]});
+
+  const getRoom = async () => {
+    axios.defaults.baseURL = 'http://spes-psbxv.run.goorm.io/';
+    const token = localStorage.getItem('token') as string;
+    axios.defaults.headers.common['Authorization'] = token;
+
+    try {
+      const { roomID } = match.params;
+      const { data: roomData } = await axios.get(`/api/room/${roomID}`);
+      const posts = await Promise.all(roomData.posts.map(async (post: any) => {
+        const { data: author } = await axios.get(`/api/user/${post.author}`);
+        return {
+          ...post,
+          author,
+        };
+      }));
+      const final = {
+        ...roomData,
+        posts,
+      };
+      setRoom(final);
+      console.log(roomData);
+    } catch (error) {
+      console.log(error);
+      toast('목표방 조회에 실패했습니다.');
+    }
+  };
+
+  useEffect(() => {
+    getRoom();
+  }, []);
 
   const onChangeImage = (event: any) =>
     setImage(URL.createObjectURL(event.target.files[0]));
@@ -52,6 +84,7 @@ const Room: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
       const { roomID } = match.params;
       await axios.post(`/api/post/${roomID}`, { content });
       toast('생성 성공!');
+      await getRoom();
     } catch (error) {
       console.log(error);
       toast('목표방 생성에 실패했습니다.');
@@ -71,8 +104,8 @@ const Room: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
             text="기본 정보"
           />
           <RoomInfo>
-            <RoomTitle>준호랑 같이 매일매일 커밋할 사람~</RoomTitle>
-            <RoomDesc>현재 참가자 3명 / 여준호, 손지민, 민승현</RoomDesc>
+            <RoomTitle>{room.title}</RoomTitle>
+            <RoomDesc>현재 참가자 {room.users.length}명 / {room.users.map((v: any) => v.username).join(', ')}</RoomDesc>
           </RoomInfo>
         </Section>
         <Section>
@@ -81,7 +114,7 @@ const Room: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
             text="목표"
           />
           <SectionContent>
-            매일 매일 GitHub에 커밋을 한다.
+            {room.goal}
           </SectionContent>
         </Section>
         <Section>
@@ -119,7 +152,7 @@ const Room: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
             text="목록"
           />
           <SectionContent>
-            {posts.map((post, idx) => {
+            {room.posts.map((post: any, idx: number) => {
               const { _id, author, created, closed, agreed, agreedUsers, content, image } = post;
               return (
                 <PostCard
@@ -143,7 +176,7 @@ const Room: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
   );
 };
 
-export default Room;
+export default withRouter(Room);
 
 const PageContent = styled.div`
   display: flex;

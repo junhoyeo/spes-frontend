@@ -3,8 +3,11 @@ import styled, { css } from 'styled-components';
 import { Text } from '../atoms/Text';
 
 import { IPost } from '../../models/post';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const PostCard: React.FC<IPost> = ({
+  _id,
   author,
   created,
   agreed,
@@ -13,12 +16,29 @@ const PostCard: React.FC<IPost> = ({
   image
 }) => {
   const { username } = author;
-  const onClickVote = () => {};
+  const onClickVote = async () => {
+    if (agreed) {
+      toast('이미 투표하셨어요!');
+      return;
+    }
+
+    try {
+      axios.defaults.baseURL = 'http://spes-psbxv.run.goorm.io/';
+      const token = localStorage.getItem('token') as string;
+      axios.defaults.headers.common['Authorization'] = token;
+      await axios.post(`/api/post/vote/${_id}`);
+      toast('투표했습니다!');
+      window.location.reload()
+    } catch (error) {
+      console.log(error);
+      toast('투표에 실패했습니다.');
+    }
+  };
 
   return (
     <Container>
       <Image
-        src={image}
+        src={image ? image : 'http://via.placeholder.com/150.png'}
       />
       <Meta>
         <Name>

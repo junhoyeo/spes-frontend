@@ -22,7 +22,7 @@ export const RoomCard: React.FC<RoomCardProps> = ({
   return (
     <Container onClick={onClickCard}>
         <Image
-          src={profile ? profile : 'http://via.placeholder.com/150.png' }
+          src={profile ? profile : 'http://via.placeholder.com/150.png'}
           draggable="false"
         />
         <Info>

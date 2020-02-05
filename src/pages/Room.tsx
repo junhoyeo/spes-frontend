@@ -39,14 +39,14 @@ const Room: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
   const [posts, setPosts] = useState<IPost[]>(examplePosts);
   const [content, setContent] = useState<string>('');
   const [room, setRoom] = useState<any>({title:'', goal:'', posts:[], users:[]});
+  const { roomID } = match.params;
 
   const getRoom = async () => {
-    axios.defaults.baseURL = 'http://spes-psbxv.run.goorm.io/';
+    axios.defaults.baseURL = 'https://spes-psbxv.run.goorm.io/';
     const token = localStorage.getItem('token') as string;
     axios.defaults.headers.common['Authorization'] = token;
 
     try {
-      const { roomID } = match.params;
       const { data: roomData } = await axios.get(`/api/room/${roomID}`);
       const posts = await Promise.all(roomData.posts.map(async (post: any) => {
         const { data: author } = await axios.get(`/api/user/${post.author}`);
@@ -77,14 +77,28 @@ const Room: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
   const onChangeImage = (event: any) =>
     setImage(URL.createObjectURL(event.target.files[0]));
 
+  const onClickCopy = () => {
+    const element: any = document.getElementById('input-to-copy');
+    element?.select();
+    document.execCommand('copy');
+    toast('클립보드에 공유 링크가 복사되었어요!');
+  };
+
+  const shareLink = `${window.location.origin}/link/${roomID}`;
+
+  const onClickShareWithFacebook = () => {
+    const shareTitle = 'Spes™으로 함께 새해 목표를 이뤄 보아요!';
+    const shareURL = `https://www.facebook.com/sharer.php?u=${shareLink}&t=${shareTitle}`;
+    window.open(shareURL, '', 'width=500,height=500,left=600');
+  };
+
   const onClickCreatePost = async (event: any) => {
     event.preventDefault();
-    axios.defaults.baseURL = 'http://spes-psbxv.run.goorm.io/';
+    axios.defaults.baseURL = 'https://spes-psbxv.run.goorm.io/';
     const token = localStorage.getItem('token') as string;
     axios.defaults.headers.common['Authorization'] = token;
 
     try {
-      const { roomID } = match.params;
       await axios.post(`/api/post/${roomID}`, { content });
       toast('생성 성공!');
       await getRoom();
@@ -109,6 +123,27 @@ const Room: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
           <RoomInfo>
             <RoomTitle>{room.title}</RoomTitle>
             <RoomDesc>현재 참가자 {room.users.length}명 / {room.users.map((v: any) => v.username).join(', ')}</RoomDesc>
+            <RoomShare>
+              <InputToCopy
+                value={shareLink}
+                readOnly={true}
+                inputID="input-to-copy"
+              />
+              <ShareButtonList>
+                <ShareButton
+                  onClick={onClickShareWithFacebook}
+                >
+                  <i className="fab fa-facebook-f" />
+                  <Text>공유</Text>
+                </ShareButton>
+                <ShareButton
+                  onClick={onClickCopy}
+                >
+                  <i className="fas fa-copy" />
+                  <Text>복사</Text>
+                </ShareButton>
+              </ShareButtonList>
+            </RoomShare>
           </RoomInfo>
         </Section>
         <Section>
@@ -183,6 +218,15 @@ const Room: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
 
 export default withRouter(Room);
 
+const InputToCopy = styled(Input)`
+
+  input {
+    font-size: 10px;
+    padding: 15px;
+    width: 90%;
+  }
+`;
+
 const PageContent = styled.div`
   display: flex;
   flex-direction: column;
@@ -204,6 +248,12 @@ const RoomDesc = styled(Text)`
   color: #5b6470;
   font-size: 16px;
   font-weight: 600;
+`;
+
+const RoomShare = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 `;
 
 const Section = styled.section`
@@ -261,4 +311,44 @@ const Label = styled(Text)`
 
 const Form = styled.form`
   width: 100%;
+`;
+
+const ShareButtonList = styled.div`
+  display: flex;
+`;
+
+const ShareButton = styled.div`
+  display: flex;
+  align-items: center;
+  color: #29344a;
+  border-radius: 32px;
+  padding: 0rem 0.65rem;
+  background-color: white;
+  box-shadow: rgba(163, 177, 198, 0.6) 3px 3px 9px;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+
+  i {
+    font-size: 15px;
+    margin-right: 0.8rem;
+  }
+
+  span {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  &:first-child {
+    background-color: #3b5998;
+    color: white;
+    margin-right: 0.5rem;
+
+    i, span {
+      text-shadow: rgba(0, 0, 255, 0.35) 3px 3px 9px;
+    }
+
+    span {
+      color: white;
+    }
+  }
 `;

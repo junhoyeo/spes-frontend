@@ -20,7 +20,7 @@ const Footer: React.FC<IFooter> = ({ history, className = '', showLogout = false
     <Container className={className}>
       <Content>
         <CopyrightText>
-          © 2020 Spes. All rights reserved.
+          © 2020 Spes™. All rights reserved.
         </CopyrightText>
         {!showLogout ||
           <TextButton

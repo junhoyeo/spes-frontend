@@ -43,7 +43,7 @@ export const Home: React.FC<RouteComponentProps> = ({ history }) => {
     () => {
       const getRooms = async () => {
         try {
-          axios.defaults.baseURL = 'http://spes-psbxv.run.goorm.io/';
+          axios.defaults.baseURL = 'https://spes-psbxv.run.goorm.io/';
           const token = localStorage.getItem('token') as string;
           axios.defaults.headers.common['Authorization'] = token;
           const { data: { rooms } } = await axios.get('/api/room');

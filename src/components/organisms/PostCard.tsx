@@ -23,7 +23,7 @@ const PostCard: React.FC<IPost> = ({
     }
 
     try {
-      axios.defaults.baseURL = 'http://spes-psbxv.run.goorm.io/';
+      axios.defaults.baseURL = 'https://spes-psbxv.run.goorm.io/';
       const token = localStorage.getItem('token') as string;
       axios.defaults.headers.common['Authorization'] = token;
       await axios.post(`/api/post/vote/${_id}`);

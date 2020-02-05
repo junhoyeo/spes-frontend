@@ -22,7 +22,7 @@ const Create: React.FC = () => {
 
   const onClickCreate = async (event: any) => {
     event.preventDefault();
-    axios.defaults.baseURL = 'http://spes-psbxv.run.goorm.io/';
+    axios.defaults.baseURL = 'https://spes-psbxv.run.goorm.io/';
     const token = localStorage.getItem('token') as string;
     axios.defaults.headers.common['Authorization'] = token;
     console.log(axios.defaults.headers.common)

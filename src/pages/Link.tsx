@@ -23,7 +23,7 @@ const Link: React.FC<RouteComponentProps<MatchParams>> = ({ history, match }) =>
   const { roomID } = match.params;
 
   const getRoom = async () => {
-    axios.defaults.baseURL = 'http://spes-psbxv.run.goorm.io/';
+    axios.defaults.baseURL = 'https://spes-psbxv.run.goorm.io/';
     const token = localStorage.getItem('token') as string || '';
     axios.defaults.headers.common['Authorization'] = token;
     try {
@@ -48,7 +48,7 @@ const Link: React.FC<RouteComponentProps<MatchParams>> = ({ history, match }) =>
       email,
       password,
     };
-    axios.defaults.baseURL = 'http://spes-psbxv.run.goorm.io/';
+    axios.defaults.baseURL = 'https://spes-psbxv.run.goorm.io/';
     axios.defaults.headers.common['Accept'] = '*/*';
     try {
       const { data: { token } } = await axios.post('/api/auth/login', payload);

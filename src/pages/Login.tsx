@@ -25,7 +25,7 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
       username,
       password,
     };
-    axios.defaults.baseURL = 'http://spes-psbxv.run.goorm.io/';
+    axios.defaults.baseURL = 'https://spes-psbxv.run.goorm.io/';
     axios.defaults.headers.common['Accept'] = '*/*';
     try {
       const { data } = await axios.post('/api/auth/register', payload);
@@ -45,7 +45,7 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
       email,
       password,
     };
-    axios.defaults.baseURL = 'http://spes-psbxv.run.goorm.io/';
+    axios.defaults.baseURL = 'https://spes-psbxv.run.goorm.io/';
     axios.defaults.headers.common['Accept'] = '*/*';
     try {
       const { data: { token } } = await axios.post('/api/auth/login', payload);

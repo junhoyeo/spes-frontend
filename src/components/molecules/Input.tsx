@@ -3,19 +3,24 @@ import styled from 'styled-components';
 import { Text } from '../atoms/Text';
 
 type InputProps = {
+  className?: string;
   label?: string;
   type?: string;
   value?: string;
   placeholder?: string;
+  inputID?: string;
+  readOnly?: boolean;
   onChange?: (e: any) => void;
 };
 
 const Input: React.FC<InputProps> = ({
-  label, type = 'text', value,
-  placeholder, onChange,
+  className = '', label, type = 'text', value,
+  placeholder, onChange, inputID, readOnly = false,
 }) => {
   return (
-    <Container>
+    <Container
+      className={className}
+    >
       <Label>
         {label}
       </Label>
@@ -24,6 +29,8 @@ const Input: React.FC<InputProps> = ({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        readOnly={readOnly}
+        id={inputID}
       />
     </Container>
   );

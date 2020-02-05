@@ -76,6 +76,7 @@ export const Home: React.FC<RouteComponentProps> = ({ history }) => {
                 />
               );
             })}
+            {!rooms.length || <CreateCard />}
           </Cards>
         </Section>
       </Content>

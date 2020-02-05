@@ -23,24 +23,19 @@ export default withRouter(CreateCard);
 const Container = styled.div`
   cursor: pointer;
   display: flex;
-  flex-basis: 21%;
-  height: 312px;
+  height: 142px;
   border: 3px solid rgba(255, 255, 255, 0.4);
-  border-radius: 30px;
+  border-radius: 8px;
   background-color: white;
   box-shadow:
-    inset 20px 30px 40px rgba(163,177,198,0.2),
-    inset -20px -30px 40px rgba(163,177,198,0.15),
-    20px 20px 40px rgba(163,177,198,0.2),
-    -20px -20px 40px rgba(163,177,198,0.15);
+    inset 20px 30px 40px rgba(163,177,198,0.15),
+    inset -20px -30px 40px rgba(163,177,198,0.1),
+    20px 20px 40px rgba(163,177,198,0.15),
+    -20px -20px 40px rgba(163,177,198,0.1);
   justify-content: center;
   align-items: center;
   transition: background-color 0.3s ease-in;
-
-  @media (max-width: 580px) {
-    width: 100%;
-    flex-basis: unset;
-  }
+  margin-bottom: 1rem;
 
   &:hover {
     background-color: rgba(163,177,198,0.15);
@@ -63,5 +58,5 @@ const Content = styled.div`
 
 const Title = styled(Text)`
   color: white;
-  text-shadow: rgba(163, 177, 198, 0.8) 0px 3px 12px;
+  text-shadow: rgba(163, 177, 198, 0.8) 0px 3px 16px;
 `;

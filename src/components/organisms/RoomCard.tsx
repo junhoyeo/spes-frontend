@@ -63,6 +63,7 @@ const Container = styled.div`
   padding: 1rem;
   display: flex;
   overflow:hidden;
+  margin-bottom: 1rem;
 
   &:hover {
     background: rgb(163,177,198, 0.3);
@@ -92,10 +93,11 @@ const Title = styled(Text)`
   color: #1f293d;
   text-align: start;
   font-weight: 900;
-  font-size: 1.1rem;
+  font-size: 18px;
   line-height: 1.5;
   margin-bottom: 0.5rem;
   word-break: keep-all;
+  letter-spacing: -0.5px;
 `;
 
 const Row = styled.div`
@@ -105,12 +107,14 @@ const Row = styled.div`
 
 const Field = styled(Text)`
   color: #5b6470;
-  font-size: 0.9rem;
+  font-size: 13px;
   margin-right: 0.8rem;
+  letter-spacing: -0.5px;
 `;
 
 const Value = styled(Text)`
   color: #78879A;
-  font-size: 0.9rem;
+  font-size: 13px;
   font-weight: 700;
+  letter-spacing: -0.5px;
 `;

@@ -13,17 +13,17 @@ import SuggestNew from '../components/templates/SuggestNew';
 import { IRoomSummary } from '../models/room';
 import { toast } from 'react-toastify';
 
-const exampleRoomSummary: IRoomSummary[] = [
-  {
-    _id: '111',
-    title: '나랑 같이 매일 일일커밋 하기 할 사람! 코딩코딩~!!',
-    author: {
-      profile: 'https://github.com/junhoyeo.png',
-      username: '여준호',
-    },
-    users: [],
-  }
-];
+// const exampleRoomSummary: IRoomSummary[] = [
+//   {
+//     _id: '111',
+//     title: '나랑 같이 매일 일일커밋 하기 할 사람! 코딩코딩~!!',
+//     author: {
+//       profile: 'https://github.com/junhoyeo.png',
+//       username: '여준호',
+//     },
+//     users: [],
+//   }
+// ];
 
 export const Home: React.FC<RouteComponentProps> = ({ history }) => {
   useEffect(

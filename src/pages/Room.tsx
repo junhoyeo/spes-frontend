@@ -67,9 +67,12 @@ const Room: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
     }
   };
 
-  useEffect(() => {
-    getRoom();
-  }, []);
+  useEffect(
+    () => {
+      getRoom();
+    },
+    [],
+  );
 
   const onChangeImage = (event: any) =>
     setImage(URL.createObjectURL(event.target.files[0]));
@@ -171,7 +174,9 @@ const Room: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
           </SectionContent>
         </Section>
       </PageContent>
-      <Footer />
+      <Footer
+        showLogout={true}
+      />
     </Page>
   );
 };
@@ -214,6 +219,10 @@ const Section = styled.section`
 const SectionContent = styled(Text)`
   color: #5b6470;
   font-weight: 600;
+
+  &:last-of-type {
+    margin-bottom: 2.5rem;
+  }
 `;
 
 const FittedHashTitle = styled(HashTitle)`

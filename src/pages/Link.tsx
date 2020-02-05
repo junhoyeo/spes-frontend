@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { withRouter, RouteComponentProps } from "react-router";
 import styled from 'styled-components';
 
 import BrandCard from '../components/organisms/BrandCard';
@@ -8,10 +9,68 @@ import Footer from '../components/organisms/Footer';
 import Input from '../components/molecules/Input';
 import Button from '../components/atoms/Button';
 
-const Link: React.FC = () => {
+import axios from 'axios';
+import { toast } from 'react-toastify';
+
+interface MatchParams {
+  roomID: string;
+}
+
+const Link: React.FC<RouteComponentProps<MatchParams>> = ({ history, match }) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [room, setRoom] = useState<any>({title:'', goal:'', posts:[], users:[]});
+  const { roomID } = match.params;
 
+  const getRoom = async () => {
+    axios.defaults.baseURL = 'http://spes-psbxv.run.goorm.io/';
+    const token = localStorage.getItem('token') as string || '';
+    axios.defaults.headers.common['Authorization'] = token;
+    try {
+      const { data: roomData } = await axios.get(`/api/room/${roomID}`);
+      setRoom(roomData);
+      console.log(roomData);
+    } catch (error) {
+      toast('목표방 조회에 실패했습니다.');
+    }
+  };
+
+  useEffect(
+    () => {
+      getRoom();
+    },
+    [],
+  );
+
+  const onClickLoginToAccept = async (event: any) => {
+    event.preventDefault();
+    const payload = {
+      email,
+      password,
+    };
+    axios.defaults.baseURL = 'http://spes-psbxv.run.goorm.io/';
+    axios.defaults.headers.common['Accept'] = '*/*';
+    try {
+      const { data: { token } } = await axios.post('/api/auth/login', payload);
+      console.log(token);
+      axios.defaults.headers.common['Authorization'] = token;
+      localStorage.setItem('token', token);
+    } catch (error) {
+      console.log(error);
+      toast('로그인 실패');
+      return;
+    }
+
+    try {
+      await axios.post(`/api/room/${roomID}`, payload);
+      toast('입장 성공!');
+      history.push('/');
+    } catch (error) {
+      toast('입장 실패');
+    }
+  };
+
+  const profile = room.users.length ? room.users[0].profile : '';
   return (
     <Page>
       <Header>
@@ -23,7 +82,7 @@ const Link: React.FC = () => {
               로그인해서 함께할 수 있어요.
             </Title>
           }
-          src="https://avatars0.githubusercontent.com/u/32605822?s=200"
+          src={profile ? profile : 'http://via.placeholder.com/150.png'}
         />
       </Header>
       <Form>
@@ -41,7 +100,7 @@ const Link: React.FC = () => {
           placeholder="비밀번호를 안전하게 입력하세요."
           onChange={(e: any) => setPassword(e.target.value)}
         />
-        <Button>
+        <Button onClick={onClickLoginToAccept}>
           로그인으로 초대장 수락하기
         </Button>
       </Form>

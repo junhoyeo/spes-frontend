@@ -6,16 +6,14 @@ import { CardContent, Section, Form, FormTitle } from '../components/atoms/Form'
 // import { FooterForLink } from '../components/organisms/Footer';
 
 import { Page } from '../components/atoms/Page';
-import Header from '../components/organisms/Header';
+import Navbar from '../components/molecules/Navbar';
 
 const Link: React.FC = () => {
   return (
-    <div style={{height: '100%', position: 'relative'}}>
-    <LinkPage>
-      <Header
-        className="header"
+    <Page>
+      <Navbar
         title="목표방 입장하기"
-        onlyText={true}
+        hideMeta={true}
       />
       <NeuCard>
         <CardContent>
@@ -40,22 +38,8 @@ const Link: React.FC = () => {
           </Form>
         </CardContent>
       </NeuCard>
-    </LinkPage>
-    {/* <FooterForLink /> */}
-    </div>
+    </Page>
   );
 };
 
 export default Link;
-
-const LinkPage = styled(Page)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem 0;
-
-  & > div:not(.header) {
-    width: fit-content !important;
-    height: fit-content !important;
-  }
-`;

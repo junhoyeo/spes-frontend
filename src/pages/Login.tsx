@@ -6,13 +6,13 @@ import axios from 'axios';
 
 import {
   NeuButton,
-  NeuCard,
   NeuInput,
 } from 'neumorphic-ui';
 
 import { Page } from '../components/atoms/Page';
 import BrandCard from '../components/organisms/BrandCard';
 import { CardContent, Section, Form, FormTitle } from '../components/atoms/Form';
+import Footer from '../components/organisms/Footer';
 
 const Login: React.FC<RouteComponentProps> = ({ history }) => {
   const [modeForJoin, setModeForJoin] = useState<boolean>(false);
@@ -63,86 +63,70 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
   const onClickMoveToLogin = () => setModeForJoin(false);
 
   return (
-    <LoginPage>
-      <NeuCard
-        height="100%"
-      >
-        <CardContent>
-          <Section>
-            <BrandCard title="새해 소망을 이룰 수 있는 희망, Spes™" />
-          </Section>
-          <Form>
-            <FormTitle>
-              { modeForJoin ? '빠르게 회원가입 진행.' : '쉽고 간단하게 로그인.' }
-            </FormTitle>
-            <NeuInput
-              type="email"
-              value={email}
-              placeholder="이메일"
-              onChange={(e: any) => setEmail(e.target.value)}
-            />
-            {
-              modeForJoin &&
-                <NeuInput
-                  type="text"
-                  value={username}
-                  placeholder="사용자 이름"
-                  onChange={(e: any) => setUsername(e.target.value)}
-                />
-            }
-            <NeuInput
-              type="password"
-              value={password}
-              placeholder="비밀번호"
-              onChange={(e: any) => setPassword(e.target.value)}
-            />
-            {(() => {
-              if (modeForJoin) {
-                return (
-                  <>
-                    <NeuButton
-                      text="회원가입"
-                      onClick={onClickJoin}
-                    />
-                    <NeuButton
-                      text="또는 로그인"
-                      onClick={onClickMoveToLogin}
-                    />
-                  </>
-                );
-              }
-
+    <Page>
+      <CardContent>
+        <Section>
+          <BrandCard title="새해 소망을 이룰 수 있는 희망, Spes™" />
+        </Section>
+        <Form>
+          <FormTitle>
+            { modeForJoin ? '빠르게 회원가입 진행.' : '쉽고 간단하게 로그인.' }
+          </FormTitle>
+          <NeuInput
+            type="email"
+            value={email}
+            placeholder="이메일"
+            onChange={(e: any) => setEmail(e.target.value)}
+          />
+          {
+            modeForJoin &&
+              <NeuInput
+                type="text"
+                value={username}
+                placeholder="사용자 이름"
+                onChange={(e: any) => setUsername(e.target.value)}
+              />
+          }
+          <NeuInput
+            type="password"
+            value={password}
+            placeholder="비밀번호"
+            onChange={(e: any) => setPassword(e.target.value)}
+          />
+          {(() => {
+            if (modeForJoin) {
               return (
                 <>
                   <NeuButton
-                    text="로그인"
-                    onClick={onClickLogin}
+                    text="회원가입"
+                    onClick={onClickJoin}
                   />
                   <NeuButton
-                    text="또는 회원가입"
-                    onClick={onClickMoveToJoin}
+                    text="또는 로그인"
+                    onClick={onClickMoveToLogin}
                   />
                 </>
               );
-            })()}
-          </Form>
-        </CardContent>
-      </NeuCard>
-    </LoginPage>
+            }
+
+            return (
+              <>
+                <NeuButton
+                  text="로그인"
+                  onClick={onClickLogin}
+                />
+                <NeuButton
+                  text="또는 회원가입"
+                  onClick={onClickMoveToJoin}
+                />
+              </>
+            );
+          })()}
+        </Form>
+      </CardContent>
+      <Footer />
+    </Page>
   );
 };
 
 export default withRouter(Login);
-
-const LoginPage = styled(Page)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-
-  /* for overriding styles in neumorphic-ui */
-  & > div {
-    width: fit-content !important;
-    height: fit-content !important;
-  }
-`;

@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Page } from '../components/atoms/Page';
-import Header from '../components/organisms/Header';
-import PageTitle from '../components/molecules/PageTitle';
 import { Text } from '../components/atoms/Text';
 import HashTitle from '../components/molecules/HashTitle';
 import Footer from '../components/organisms/Footer';
 import { NeuButton, NeuInput } from 'neumorphic-ui';
 import PostCard from '../components/organisms/PostCard';
+import Navbar from '../components/molecules/Navbar';
 
 const Room: React.FC = () => {
   const [image, setImage] = useState<string>('http://via.placeholder.com/150.png');
@@ -16,13 +15,22 @@ const Room: React.FC = () => {
     setImage(URL.createObjectURL(event.target.files[0]));
 
   return (
-    <RoomPage>
-      <Header className="header" title="방 정보" />
+    <Page>
+      <Navbar
+        title="방 정보"
+        showBack={true}
+      />
       <PageContent>
-        <RoomInfo>
-          <RoomTitle>준호랑 같이 매일매일 커밋할 사람~</RoomTitle>
-          <RoomDesc>현재 참가자 3명 / 여준호, 손지민, 민승현</RoomDesc>
-        </RoomInfo>
+        <Section>
+          <FittedHashTitle
+            id="basic"
+            text="기본 정보"
+          />
+          <RoomInfo>
+            <RoomTitle>준호랑 같이 매일매일 커밋할 사람~</RoomTitle>
+            <RoomDesc>현재 참가자 3명 / 여준호, 손지민, 민승현</RoomDesc>
+          </RoomInfo>
+        </Section>
         <Section>
           <FittedHashTitle
             id="goal"
@@ -62,20 +70,11 @@ const Room: React.FC = () => {
         </Section>
       </PageContent>
       <Footer />
-    </RoomPage>
+    </Page>
   );
 };
 
 export default Room;
-
-const RoomPage = styled(Page)`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem 0;
-`;
 
 const PageContent = styled.div`
   display: flex;
@@ -87,7 +86,7 @@ const RoomInfo = styled.div`
   flex-direction: column;
 `;
 
-const RoomTitle = styled(PageTitle)`
+const RoomTitle = styled(Text)`
   font-size: 2rem;
   margin-left: 0;
 `;
@@ -99,7 +98,11 @@ const RoomDesc = styled(Text)`
 const Section = styled.section`
   display: flex;
   flex-direction: column;
-  margin: 2.5rem 0;
+  width: 100%;
+
+  &:not(:first-child) {
+    margin: 2.5rem 0;
+  }
 `;
 
 const SectionContent = styled(Text)`
@@ -129,36 +132,5 @@ const Image = styled.img`
   border-radius: 30px;
 `;
 
-const Form = styled.div`
-  width: calc(100% - 120px);
-
-  & > div {
-    width: 100% !important;
-    margin-bottom: 0.8rem;
-
-    input {
-      width: inherit !important;
-      font-size: 0.95rem;
-      padding: 1.5rem 0.8rem !important;
-    }
-  }
-
-  /* styles for file input tag */
-  & > input {
-    font-size: 1.1rem;
-    display: flex;
-    margin: 0.8rem 0;
-    font-weight: 800;
-    color: rgb(185, 194, 206);
-  }
-
-  & > div:nth-child(3) {
-    border: 3px solid rgb(224, 229, 236) !important;
-    transition: border-color 0.3s ease-in-out;
-    padding: 13.5px 0 !important;
-
-    &:hover {
-      border: 3px solid rgba(255, 255, 255, 0.4) !important;
-    }
-  }
+const Form = styled.form`
 `;

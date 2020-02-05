@@ -8,9 +8,12 @@ import TextButton from '../atoms/TextButton';
 type NavbarProps = {
   title: string;
   showBack?: boolean;
+  hideMeta?: boolean;
 };
 
-const Navbar: React.FC<NavbarProps & RouteComponentProps> = ({ title, history, showBack = false }) => {
+const Navbar: React.FC<NavbarProps & RouteComponentProps> = ({
+  title, history, showBack = false, hideMeta = false,
+}) => {
   const onClickBack = () => history.goBack();
   const onClickRank = () => history.push('/rank');
 
@@ -28,16 +31,18 @@ const Navbar: React.FC<NavbarProps & RouteComponentProps> = ({ title, history, s
           {title}
         </Title>
       </Head>
-      <Meta>
-        <Label onClick={onClickRank}>
-          <i className="fas fa-crown" />
-          <Text>1등</Text>
-        </Label>
-        <Label>
-          <i className="fas fa-coins" />
-          <Text>1,500p</Text>
-        </Label>
-      </Meta>
+      {hideMeta ||
+        <Meta>
+          <Label onClick={onClickRank}>
+            <i className="fas fa-crown" />
+            <Text>1등</Text>
+          </Label>
+          <Label>
+            <i className="fas fa-coins" />
+            <Text>1,500p</Text>
+          </Label>
+        </Meta>
+      }
     </Container>
   );
 };

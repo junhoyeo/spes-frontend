@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Page from '../components/atoms/Page';
 import Footer from '../components/organisms/Footer';
 import RankCard from '../components/organisms/RankCard';
-import Header from '../components/organisms/Header';
 import Navbar from '../components/molecules/Navbar';
 
 const ranks = Array(8).fill({

@@ -29,7 +29,7 @@ export const Home: React.FC<RouteComponentProps> = ({ history }) => {
     () => {
       const token = localStorage.getItem('token') || '';
       if (!token) {
-        history.push('/auth/login');
+        // history.push('/auth/login');
       }
     },
     [history],
@@ -80,7 +80,9 @@ export const Home: React.FC<RouteComponentProps> = ({ history }) => {
           </Cards>
         </Section>
       </Content>
-      <Footer />
+      <Footer
+        showLogout={true}
+      />
     </Page>
   );
 };

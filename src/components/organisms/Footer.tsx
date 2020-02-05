@@ -5,9 +5,10 @@ import Text from '../atoms/Text';
 
 interface IFooter extends RouteComponentProps {
   className?: string;
+  showLogout?: boolean;
 }
 
-const Footer: React.FC<IFooter> = ({ history, className = '' }) => {
+const Footer: React.FC<IFooter> = ({ history, className = '', showLogout = false }) => {
   const onClickLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
@@ -17,7 +18,16 @@ const Footer: React.FC<IFooter> = ({ history, className = '' }) => {
   return (
     <Container className={className}>
       <Content>
-        <Text>© 2020 Spes. All rights reserved.</Text>
+        <CopyrightText>
+          © 2020 Spes. All rights reserved.
+        </CopyrightText>
+        {!showLogout ||
+          <TextButton
+            onClick={onClickLogout}
+          >
+            Logout
+          </TextButton>
+        }
       </Content>
     </Container>
   );
@@ -40,9 +50,20 @@ const Content = styled.div`
   justify-content: center;
   align-items: center;
   padding: 1rem 0;
+  flex-direction: column;
+`;
 
-  span {
-    font-size: 0.85rem;
-    color: rgba(27, 41, 68, 0.5);
+const CopyrightText = styled(Text)`
+  font-size: 0.85rem;
+  color: rgba(27, 41, 68, 0.5);
+`;
+
+const TextButton = styled(Text)`
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: rgba(27, 41, 68, 0.7);
+
+  &:hover {
+    color: rgba(27, 41, 68, 0.8);
   }
 `;

@@ -49,15 +49,12 @@ const Link: React.FC = () => {
 export default Link;
 
 const LinkPage = styled(Page)`
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2rem 0;
 
   & > div:not(.header) {
-    /* width: 83% !important;
-    max-width: 1200px; */
     width: fit-content !important;
     height: fit-content !important;
   }

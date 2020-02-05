@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Navbar from '../components/atoms/Navbar';
 import Page from '../components/atoms/Page';
 import PointIcon from '../components/molecules/PointIcon';
 import CrownIcon from '../components/molecules/CrownIcon';
@@ -11,10 +10,9 @@ import RoomCard from '../components/organisms/RoomCard';
 import CreateCard from '../components/organisms/CreateCard';
 import PageTitle from '../components/molecules/PageTitle';
 import HashTitle from '../components/molecules/HashTitle';
+import Navbar from '../components/molecules/Navbar';
 
 export const Home: React.FC<RouteComponentProps> = ({ history }) => {
-  const onClickCrown = () => history.push('/rank');
-
   useEffect(
     () => {
       const token = localStorage.getItem('token') || '';
@@ -26,22 +24,8 @@ export const Home: React.FC<RouteComponentProps> = ({ history }) => {
   );
 
   return (
-    <LoginPage>
-      <SpacedNavbar>
-        <PageTitle>
-          로비
-        </PageTitle>
-        <Icons>
-          <PointIcon>
-            1,500p
-          </PointIcon>
-          <CrownIcon
-            onClick={onClickCrown}
-          >
-            <i className="fas fa-crown" />
-          </CrownIcon>
-        </Icons>
-      </SpacedNavbar>
+    <Page>
+      <Navbar title="로비" />
       <Content>
         <Section>
           <HashTitle
@@ -49,43 +33,24 @@ export const Home: React.FC<RouteComponentProps> = ({ history }) => {
             text="내 목표방"
           />
           <Cards>
+            {/* <RoomCard />
             <RoomCard />
             <RoomCard />
             <RoomCard />
             <RoomCard />
-            <RoomCard />
-            <RoomCard />
+            <RoomCard /> */}
             <CreateCard />
           </Cards>
         </Section>
       </Content>
       <Footer />
-    </LoginPage>
+    </Page>
   );
 };
 
 export default withRouter(Home);
 
-const LoginPage = styled(Page)`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem 0;
-`;
-
-const SpacedNavbar = styled(Navbar)`
-  justify-content: space-between;
-`;
-
-const Icons = styled.div`
-  display: flex;
-`;
-
 const Content = styled.main`
-  width: 83%;
-  max-width: 1200px;
   display: flex;
   flex-direction: column;
 `;

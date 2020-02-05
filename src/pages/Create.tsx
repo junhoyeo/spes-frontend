@@ -6,7 +6,6 @@ import Header from '../components/organisms/Header';
 import { Page } from '../components/atoms/Page';
 import { CardContent, Section, Form, FormTitle } from '../components/atoms/Form';
 import Footer from '../components/organisms/Footer';
-import admin from 'firebase-admin';
 
 const Create: React.FC = () => {
   const [name, setName] = useState<string>('');
@@ -23,10 +22,6 @@ const Create: React.FC = () => {
       posts: [],
       users: userID,
     };
-    const db = admin.database();
-    const ref = db.ref('rooms');
-    const { key: postID } = ref.push(room);
-    console.log(postID);
   };
 
   return (
@@ -77,8 +72,6 @@ const CreatePage = styled(Page)`
   padding: 2rem 0;
 
   & > div:not(.header) {
-    /* width: 83% !important;
-    max-width: 1200px; */
     width: fit-content !important;
     height: fit-content !important;
   }

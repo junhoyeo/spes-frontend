@@ -3,7 +3,7 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Icon from '../atoms/Icon';
-import Navbar from '../atoms/Navbar';
+// import Navbar from '../atoms/Navbar';
 import PageTitle from '../molecules/PageTitle';
 
 interface IHeader extends RouteComponentProps {
@@ -34,7 +34,7 @@ const Header = ({ history, title, className='', onlyText=false }: IHeader) => {
 
 export default withRouter(Header);
 
-const LeftAlignedNavbar = styled(Navbar)`
+const LeftAlignedNavbar = styled.div`
   justify-content: flex-start;
 `;
 

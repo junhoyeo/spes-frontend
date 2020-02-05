@@ -5,30 +5,36 @@ import { NeuCard } from 'neumorphic-ui';
 import Text from '../atoms/Text';
 
 import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { IRoomSummary } from '../../models/room';
 
-interface RoomCardProps extends RouteComponentProps {
-}
+interface RoomCardProps extends RouteComponentProps, IRoomSummary {}
 
-export const RoomCard: React.FC<RoomCardProps> = ({ history }) => {
+export const RoomCard: React.FC<RoomCardProps> = ({
+  _id,
+  author,
+  users,
+  title,
+  history,
+}) => {
   const onClickCard = () => history.push('/room');
 
   return (
     <Container onClick={onClickCard}>
       <NeuCard>
         <Image
-          src="https://avatars0.githubusercontent.com/u/32605822?s=200"
+          src={author.profile}
           draggable="false"
         />
         <Info>
           <Title>
-            나랑 같이 매일 일일커밋 하기 할 사람! 코딩코딩~!!
+            {title}
           </Title>
           <Row>
             <Field>
               개설한 사람
             </Field>
             <Value>
-              여준호
+              {author.username}
             </Value>
           </Row>
           <Row>
@@ -36,7 +42,7 @@ export const RoomCard: React.FC<RoomCardProps> = ({ history }) => {
               현재 참가자
             </Field>
             <Value>
-              5명
+              {users.length}명
             </Value>
           </Row>
         </Info>

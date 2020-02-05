@@ -57,7 +57,7 @@ const Room: React.FC = () => {
             text="목록"
           />
           <SectionContent>
-            <PostCard />
+            {/* <PostCard /> */}
           </SectionContent>
         </Section>
       </PageContent>
@@ -78,8 +78,6 @@ const RoomPage = styled(Page)`
 `;
 
 const PageContent = styled.div`
-  width: 83%;
-  max-width: 1200px;
   display: flex;
   flex-direction: column;
 `;

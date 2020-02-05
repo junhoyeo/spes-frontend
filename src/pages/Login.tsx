@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components';
-import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 
 import {

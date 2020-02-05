@@ -1,3 +1,5 @@
+import { IUser } from './user';
+
 export interface IVote {
   agreed: boolean;
   agreedUsers: string[];
@@ -10,6 +12,6 @@ export interface IPostCreation {
 
 export interface IPost extends IVote, IPostCreation {
   _id: string;
-  author: string;
+  author: IUser;
   created: number;
 }

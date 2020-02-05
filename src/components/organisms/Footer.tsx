@@ -64,8 +64,7 @@ const Container = styled.footer`
 `;
 
 const ButtonWrapper = styled.div`
-  width: 83%;
-  max-width: 1200px;
+  width: 100%;
 
   & > div {
     width: 256px !important;

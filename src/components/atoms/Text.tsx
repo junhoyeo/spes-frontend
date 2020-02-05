@@ -5,7 +5,7 @@ export const Text = styled.span`
   overflow-wrap: break-word;
   font-size: 20px;
   font-weight: 900;
-  color: rgb(224, 229, 236);
+  color: #1B2944;
   text-shadow: rgba(163, 177, 198, 0.6) 3px 3px 9px;
 `;
 

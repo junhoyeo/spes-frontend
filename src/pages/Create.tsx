@@ -95,7 +95,7 @@ const CreatePage = styled(Page)<CreatePageProps>`
   height: 100vh;
 
   ${({ continuous = false }) => !continuous && css`
-    height: calc(100vh + 5.2rem);
+    height: calc(100vh + 5.7rem);
   `};
 
   @media (max-height: 790px) {

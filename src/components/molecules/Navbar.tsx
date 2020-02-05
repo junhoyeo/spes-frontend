@@ -64,6 +64,7 @@ const Head = styled.div`
 
 const Title = styled(Text)`
   font-size: 2.1rem;
+  word-break: keep-all;
 `;
 
 const Meta = styled.div`

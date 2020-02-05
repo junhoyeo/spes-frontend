@@ -17,10 +17,19 @@ const Button = styled.button`
   background-color: #1B2944;
   font-size: 0.95rem;
   transition: background-color 0.3s ease-in;
+  margin-bottom: 0.8rem;
 
   &:hover,
   &:focus {
     background-color: #2F2E41;
+  }
+
+  &:nth-of-type(2) {
+    color: rgb(185, 194, 206);
+    background-color: rgb(224, 229, 236);
+    box-shadow:
+      rgba(180,191,207,0.8) 7px 7px 14px,
+      rgba(159,169,181,0.45) -5px -5px 10px;
   }
 `;
 

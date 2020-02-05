@@ -4,15 +4,12 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
 
-import {
-  NeuButton,
-  NeuInput,
-} from 'neumorphic-ui';
-
 import { Page } from '../components/atoms/Page';
 import BrandCard from '../components/organisms/BrandCard';
-import { CardContent, Section, Form, FormTitle } from '../components/atoms/Form';
 import Footer from '../components/organisms/Footer';
+import Input from '../components/molecules/Input';
+import Button from '../components/atoms/Button';
+import Text from '../components/atoms/Text';
 
 const Login: React.FC<RouteComponentProps> = ({ history }) => {
   const [modeForJoin, setModeForJoin] = useState<boolean>(false);
@@ -20,7 +17,8 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
-  const onClickJoin = async () => {
+  const onClickJoin = async (event: any) => {
+    event.preventDefault();
     const payload = {
       email,
       username,
@@ -40,7 +38,8 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
     setModeForJoin(false);
   };
 
-  const onClickLogin = async () => {
+  const onClickLogin = async (event: any) => {
+    event.preventDefault();
     const payload = {
       email,
       password,
@@ -59,74 +58,107 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
     history.push('/');
   };
 
-  const onClickMoveToJoin = () => setModeForJoin(true);
-  const onClickMoveToLogin = () => setModeForJoin(false);
+  const onClickMoveToJoin = (event: any) => {
+    event.preventDefault();
+    setModeForJoin(true);
+  };
+
+  const onClickMoveToLogin = (event: any) => {
+    event.preventDefault();
+    setModeForJoin(false);
+  }
 
   return (
     <Page>
-      <CardContent>
-        <Section>
-          <BrandCard title="새해 소망을 이룰 수 있는 희망, Spes™" />
-        </Section>
-        <Form>
-          <FormTitle>
+      <Header>
+        <BrandCard
+          title={
+            <Title>
+              새해 소망 이루기,<br />
+              올해는 Spes™와 함께
+            </Title>
+          }
+        />
+      </Header>
+      <Form>
+          {/* <FormTitle>
             { modeForJoin ? '빠르게 회원가입 진행.' : '쉽고 간단하게 로그인.' }
-          </FormTitle>
-          <NeuInput
+          </FormTitle> */}
+          <Input
+            label="이메일"
             type="email"
             value={email}
-            placeholder="이메일"
+            placeholder="이메일을 입력해 주세요."
             onChange={(e: any) => setEmail(e.target.value)}
           />
           {
             modeForJoin &&
-              <NeuInput
+              <Input
+                label="사용자 이름"
                 type="text"
                 value={username}
-                placeholder="사용자 이름"
+                placeholder="여러분의 멋진 이름을 입력하세요."
                 onChange={(e: any) => setUsername(e.target.value)}
               />
           }
-          <NeuInput
+          <Input
+            label="비밀번호"
             type="password"
             value={password}
-            placeholder="비밀번호"
+            placeholder="비밀번호를 안전하게 입력하세요."
             onChange={(e: any) => setPassword(e.target.value)}
           />
           {(() => {
             if (modeForJoin) {
               return (
                 <>
-                  <NeuButton
-                    text="회원가입"
+                  <Button
                     onClick={onClickJoin}
-                  />
-                  <NeuButton
-                    text="또는 로그인"
+                  >
+                    회원가입
+                  </Button>
+                  <Button
                     onClick={onClickMoveToLogin}
-                  />
+                  >
+                    또는 로그인
+                  </Button>
                 </>
               );
             }
 
             return (
               <>
-                <NeuButton
-                  text="로그인"
+                <Button
                   onClick={onClickLogin}
-                />
-                <NeuButton
-                  text="또는 회원가입"
+                >
+                  로그인
+                </Button>
+                <Button
                   onClick={onClickMoveToJoin}
-                />
+                >
+                  또는 회원가입
+                </Button>
               </>
             );
           })()}
         </Form>
-      </CardContent>
       <Footer />
     </Page>
   );
 };
 
 export default withRouter(Login);
+
+const Header = styled.header`
+  margin-bottom: 2.5rem;
+`;
+
+const Form = styled.form`
+  width: 100%;
+`;
+
+const Title = styled(Text)`
+  font-size: 15px;
+  line-height: 1.5;
+  text-align: center;
+`;

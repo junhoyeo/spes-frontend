@@ -34,6 +34,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 0.8rem;
+
+  &:last-of-type {
+    margin-bottom: 1.2rem;
+  }
 `;
 
 const Label = styled(Text)`

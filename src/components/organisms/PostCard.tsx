@@ -97,6 +97,8 @@ const Vote = styled.div`
 const Image = styled.img`
   width: 120px;
   height: 120px;
+  min-width: 120px;
+  object-fit: cover;
   border-radius: 30px;
   border: 3px solid #E5E9F1;
   box-shadow:

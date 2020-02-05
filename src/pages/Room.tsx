@@ -13,6 +13,7 @@ import { IPost } from '../models/post';
 
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { uploadImage } from '../utils/uploadImage';
 
 const examplePosts: IPost[] = [
   {
@@ -35,7 +36,8 @@ interface MatchParams {
 }
 
 const Room: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
-  const [image, setImage] = useState<string>('http://via.placeholder.com/150.png');
+  const [rawImage, setRawImage] = useState<any>(null);
+  const [previewImage, setPreviewImage] = useState<string>('http://via.placeholder.com/150.png');
   const [posts, setPosts] = useState<IPost[]>(examplePosts);
   const [content, setContent] = useState<string>('');
   const [room, setRoom] = useState<any>({title:'', goal:'', posts:[], users:[]});
@@ -74,8 +76,11 @@ const Room: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
     [],
   );
 
-  const onChangeImage = (event: any) =>
-    setImage(URL.createObjectURL(event.target.files[0]));
+  const onChangeImage = async (event: any) => {
+    const raw = event.target.files[0];
+    setRawImage(raw);
+    setPreviewImage(URL.createObjectURL(raw));
+  }
 
   const onClickCopy = () => {
     const element: any = document.getElementById('input-to-copy');
@@ -98,13 +103,21 @@ const Room: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
     const token = localStorage.getItem('token') as string;
     axios.defaults.headers.common['Authorization'] = token;
 
+    const filename = await uploadImage(rawImage);
+    console.log(filename);
+    const image = `http://spes-psbxv.run.goorm.io/api/image/${filename}`
+    console.log(image);
+
     try {
-      await axios.post(`/api/post/${roomID}`, { content });
-      toast('생성 성공!');
+      await axios.post(`/api/post/${roomID}`, {
+        content,
+        image,
+      });
+      toast('등록 성공!');
       await getRoom();
     } catch (error) {
       console.log(error);
-      toast('목표방 생성에 실패했습니다.');
+      toast('포스트 등록에 실패했습니다.');
     }
   }
 
@@ -163,7 +176,7 @@ const Room: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
           <FormWrap>
             <ImageWrap>
               <Label>이미지 미리보기</Label>
-              <Image src={image} />
+              <Image src={previewImage} />
             </ImageWrap>
             <Form>
               <Input

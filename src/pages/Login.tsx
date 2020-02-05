@@ -11,12 +11,23 @@ import Input from '../components/molecules/Input';
 import Button from '../components/atoms/Button';
 import Text from '../components/atoms/Text';
 import SuggestJoin from '../components/templates/SuggestJoin';
+import { uploadImage } from '../utils/uploadImage';
 
 const Login: React.FC<RouteComponentProps> = ({ history }) => {
   const [modeForJoin, setModeForJoin] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [profile, setProfile] = useState<string>('');
+
+  const onChangeProfile = async (event: any) => {
+    const rawImage = event.target.files[0];
+    const filename = await uploadImage(rawImage);
+    console.log(filename);
+    const profile = `http://spes-psbxv.run.goorm.io/api/image/${filename}`
+    console.log(profile);
+    setProfile(profile);
+  };
 
   const onClickJoin = async (event: any) => {
     event.preventDefault();
@@ -24,6 +35,7 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
       email,
       username,
       password,
+      profile,
     };
     axios.defaults.baseURL = 'https://spes-psbxv.run.goorm.io/';
     axios.defaults.headers.common['Accept'] = '*/*';
@@ -99,13 +111,20 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
           />
           {
             modeForJoin &&
-              <Input
-                label="사용자 이름"
-                type="text"
-                value={username}
-                placeholder="여러분의 멋진 이름을 입력하세요."
-                onChange={(e: any) => setUsername(e.target.value)}
-              />
+              <>
+                <Input
+                  label="프로필 사진 업로드 (선택)"
+                  type="file"
+                  onChange={onChangeProfile}
+                />
+                <Input
+                  label="사용자 이름"
+                  type="text"
+                  value={username}
+                  placeholder="여러분의 멋진 이름을 입력하세요."
+                  onChange={(e: any) => setUsername(e.target.value)}
+                />
+              </>
           }
           <Input
             label="비밀번호"
@@ -161,7 +180,7 @@ const Header = styled.header`
 
 const Form = styled.form`
   width: 100%;
-  margin-bottom: 2rem;
+  margin-bottom: 3.5rem;
 `;
 
 const Title = styled(Text)`

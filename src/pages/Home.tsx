@@ -11,6 +11,7 @@ import HashTitle from '../components/molecules/HashTitle';
 import Navbar from '../components/molecules/Navbar';
 import SuggestNew from '../components/templates/SuggestNew';
 import { IRoomSummary } from '../models/room';
+import { toast } from 'react-toastify';
 
 const exampleRoomSummary: IRoomSummary[] = [
   {
@@ -29,22 +30,27 @@ export const Home: React.FC<RouteComponentProps> = ({ history }) => {
     () => {
       const token = localStorage.getItem('token') || '';
       if (!token) {
-        // history.push('/auth/login');
+        toast('먼저 로그인 후 진행해 주세요.');
+        history.push('/auth/login');
       }
     },
     [history],
   );
 
-  const [rooms, setRooms] = useState<IRoomSummary[]>(exampleRoomSummary);
+  const [rooms, setRooms] = useState<IRoomSummary[]>([]);
 
   useEffect(
     () => {
       const getRooms = async () => {
         try {
-          const { data: rooms } = await axios.get('/api/room');
+          axios.defaults.baseURL = 'http://spes-psbxv.run.goorm.io/';
+          const token = localStorage.getItem('token') as string;
+          axios.defaults.headers.common['Authorization'] = token;
+          const { data: { rooms } } = await axios.get('/api/room');
           setRooms(rooms);
         } catch (error) {
           console.log(error);
+          toast('데이터를 불러오는 데 실패했습니다.');
         }
       };
 

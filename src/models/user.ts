@@ -3,4 +3,6 @@ export interface IUser {
   username: string;
   email?: string;
   profile?: string;
+  points?: number;
+  achievement?: [number, number];
 }

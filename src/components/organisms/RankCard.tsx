@@ -18,7 +18,7 @@ export const RankCard: React.FC<RankCardProps> = ({
   profile,
   points,
 }) => {
-  const percent = (achievement[0] / achievement[1] * 100).toFixed(2);
+  const percent = (achievement[0] / (achievement[1] || 1) * 100).toFixed(2);
   return (
     <Container>
       <ContentWrapper>

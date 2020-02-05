@@ -11,24 +11,38 @@ import formImage from '../assets/illusts/form.svg';
 import Button from '../components/atoms/Button';
 import Switch from '../components/molecules/Switch';
 
+import axios from 'axios';
+import { toast } from 'react-toastify';
+
 const Create: React.FC = () => {
   const [name, setName] = useState<string>('');
   const [goal, setGoal] = useState<string>('');
   const [finish, setFinish] = useState<string>('');
   const [continuous, setContinuous] = useState<boolean>(true);
 
-  const onClickCreate = (event: any) => {
+  const onClickCreate = async (event: any) => {
     event.preventDefault();
-    const userJSON = localStorage.getItem('user') as string || '{}';
-    const { id: userID = '' } = JSON.parse(userJSON);
-    const room = {
+    axios.defaults.baseURL = 'http://spes-psbxv.run.goorm.io/';
+    const token = localStorage.getItem('token') as string;
+    axios.defaults.headers.common['Authorization'] = token;
+    console.log(axios.defaults.headers.common)
+    // 하루에 한 번 이상씩 깃허브에 커밋 남기기~!
+    const payload = {
       title: name,
       goal,
-      finishDate: 0,
-      isContinuous: true,
-      posts: [],
-      users: userID,
+      finish,
+      continuous,
     };
+
+    try {
+      const { data: { _id: roomID } } = await axios.post('/api/room', payload);
+      console.log(roomID);
+      toast('생성 성공!');
+      window.location.href = '/';
+    } catch (error) {
+      console.log(error);
+      toast('목표방 생성에 실패했습니다.');
+    }
   };
 
   return (

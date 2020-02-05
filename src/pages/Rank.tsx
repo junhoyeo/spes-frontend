@@ -1,12 +1,15 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Page from '../components/atoms/Page';
 import Footer from '../components/organisms/Footer';
 import RankCard from '../components/organisms/RankCard';
 import Navbar from '../components/molecules/Navbar';
+import { IUser } from '../models/user';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
-const ranks = [
+const exampleRanks: IUser[] = [
   {
     username: '여준호',
     profile: 'https://avatars0.githubusercontent.com/u/32605822?s=460&v=4',
@@ -40,6 +43,25 @@ const ranks = [
 ];
 
 const Rank: React.FC = () => {
+  const [ranks, setRanks] = useState<IUser[]>([]);
+
+  useEffect(() => {
+    const getRanks = async () => {
+      try {
+        axios.defaults.baseURL = 'http://spes-psbxv.run.goorm.io/';
+        const token = localStorage.getItem('token') as string;
+        axios.defaults.headers.common['Authorization'] = token;
+        const { data: { users } } = await axios.get('/api/user');
+        setRanks(users);
+      } catch (error) {
+        console.log(error);
+        toast('데이터를 불러오는 데 실패했습니다.');
+      }
+    };
+
+    getRanks();
+  }, []);
+
   return (
     <Page>
       <Navbar
@@ -48,7 +70,7 @@ const Rank: React.FC = () => {
       />
       <Section>
         {ranks.map((user, idx) => {
-          const { username, profile, achievement, points } = user;
+          const { username, profile = 'http://via.placeholder.com/150.png', achievement, points = 1500 } = user;
           return (
             <RankCard
               key={`rank-${idx}`}

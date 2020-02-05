@@ -12,8 +12,6 @@ import Button from '../components/atoms/Button';
 import Text from '../components/atoms/Text';
 import SuggestJoin from '../components/templates/SuggestJoin';
 
-import passwordImage from '../assets/illusts/password.svg';
-
 const Login: React.FC<RouteComponentProps> = ({ history }) => {
   const [modeForJoin, setModeForJoin] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
@@ -52,6 +50,7 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
     try {
       const { data: { token } } = await axios.post('/api/auth/login', payload);
       console.log(token);
+      axios.defaults.headers.common['Authorization'] = token;
       localStorage.setItem('token', token);
     } catch (error) {
       console.log(error);
